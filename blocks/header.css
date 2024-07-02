@@ -1,0 +1,10 @@
+.header {
+    margin-top: 45px;
+    max-width: 880px;
+    max-height: 74px;
+    border-bottom: solid;
+    border-bottom-color: #545454;
+}
+
+.header__image {
+}
