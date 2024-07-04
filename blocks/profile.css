@@ -1,0 +1,58 @@
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding-top: 40px;
+    max-width: 880px;
+    width: 100%;
+    max-height: 120px;
+}
+
+.profile__image {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    background-position: center;
+    margin-right: 24px;
+}
+
+.profile__info {
+    width: 415px;
+    height: 77px;
+    display: grid;
+    align-items: baseline;
+    grid-template-areas: "title button" "description description";
+}
+
+.profile__title {
+    margin: 0;
+    font-size: 42px;
+    line-height: 48px;
+    font-weight: 500;
+    grid-area: title;
+}
+
+.profile__description {
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    grid-area: description;
+}
+
+.profile__edit-button {
+    margin-left: auto;
+    background: transparent url(../images/Edit\ Button.svg) center no-repeat;
+    width: 24px;
+    height: 24px;
+    grid-area: button;
+}
+
+.profile__add-button {
+    background: transparent url(../images/Add\ Button.svg) center no-repeat;
+    width: 150px;
+    height: 50px;
+    margin-left: auto;
+}
