@@ -1,7 +1,6 @@
 .profile {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     position: relative;
     padding-top: 40px;
     max-width: 880px;
@@ -55,4 +54,23 @@
     width: 150px;
     height: 50px;
     margin-left: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .profile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile__info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .profile__description {
+        text-align: center;
+        width: 100%;
+    }
 }

@@ -2,8 +2,7 @@
     margin-top: 45px;
     max-width: 880px;
     max-height: 74px;
-    border-bottom: solid;
-    border-bottom-color: #545454;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 .header__image {
