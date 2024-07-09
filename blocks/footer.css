@@ -13,3 +13,21 @@
     white-space: nowrap;
     color: #545454;
 }
+
+@media screen and (max-width: 282px) {
+    .footer {
+        margin: 67px auto 60px;
+        max-width: 880px;
+        max-height: 18px;
+    }
+
+    .footer__copyright {
+        font-family: Inter, Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21.78px;
+        text-align: left;
+        white-space: nowrap;
+        color: #545454;
+    }
+}
