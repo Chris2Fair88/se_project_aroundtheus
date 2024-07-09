@@ -46,6 +46,8 @@
     background: transparent url(../images/Edit\ Button.svg) center no-repeat;
     width: 24px;
     height: 24px;
+    border: 1px;
+    color: #fff;
     grid-area: button;
 }
 
@@ -54,6 +56,8 @@
     width: 150px;
     height: 50px;
     margin-left: auto;
+    border: 2px;
+    color: #fff;
 }
 
 @media screen and (max-width: 620px) {
@@ -94,16 +98,22 @@
 
     .profile__edit-button {
         margin-left: auto;
-        background: transparent url(../images/Edit\ Button.svg) center no-repeat;
+        background: transparent url(../images/EditButtonVector.png) center
+            no-repeat;
         width: 18px;
         height: 18px;
+        border: 1px;
+        color: #fff;
         grid-area: button;
     }
 
     .profile__add-button {
-        background: transparent url(../images/Add\ Button.svg) center no-repeat;
+        background: transparent url(../images/AddButtonVector.png) center
+            no-repeat;
         width: 282px;
         height: 50px;
         margin: 0;
+        border: 2px;
+        color: #fff;
     }
 }
