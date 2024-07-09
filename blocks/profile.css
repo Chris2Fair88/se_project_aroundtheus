@@ -46,8 +46,7 @@
     background: transparent url(../images/Edit\ Button.svg) center no-repeat;
     width: 24px;
     height: 24px;
-    border: 1px;
-    color: #fff;
+    border: 1px solid #fff;
     grid-area: button;
 }
 
@@ -56,8 +55,7 @@
     width: 150px;
     height: 50px;
     margin-left: auto;
-    border: 2px;
-    color: #fff;
+    border: 2px solid #fff;
 }
 
 @media screen and (max-width: 620px) {
@@ -75,8 +73,17 @@
         width: 282px;
         display: grid;
         align-items: baseline;
+        justify-content: space-evenly;
         text-align: center;
         grid-template-areas: "title button" "description description";
+    }
+    .profile__image {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        background-position: center;
+        margin: 0;
     }
 
     .profile__title {
@@ -90,7 +97,7 @@
 
     .profile__description {
         margin: 0;
-        font-size: 18px;
+        font-size: 14px;
         line-height: 22px;
         font-weight: 400;
         grid-area: description;
@@ -102,8 +109,7 @@
             no-repeat;
         width: 18px;
         height: 18px;
-        border: 1px;
-        color: #fff;
+        border: 1px solid #fff;
         grid-area: button;
     }
 
@@ -113,7 +119,7 @@
         width: 282px;
         height: 50px;
         margin: 0;
-        border: 2px;
+        border: 2px solid #fff;
         color: #fff;
     }
 }
