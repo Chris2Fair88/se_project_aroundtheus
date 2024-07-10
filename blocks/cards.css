@@ -55,3 +55,7 @@
     width: 21px;
     height: 18px;
 }
+
+.card__like-button:hover {
+    background: transparent url();
+}

@@ -48,6 +48,9 @@
     border: 1px solid #fff;
     grid-area: button;
 }
+.profile__edit-button:hover {
+    background: transparent (url(../images/EditButtonHover.png));
+}
 
 .profile__add-button {
     background: transparent url(../images/Add\ Button.svg) center no-repeat;
@@ -55,6 +58,9 @@
     height: 50px;
     margin-left: auto;
     border: 2px solid #fff;
+}
+
+.profile__add-button:hover {
 }
 
 @media screen and (max-width: 620px) {
@@ -72,10 +78,8 @@
         max-width: 282px;
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
         justify-content: center;
         text-align: center;
-        gap: 10px;
         grid-template-areas: "title button" "description description";
     }
     .profile__image {
@@ -88,26 +92,28 @@
     }
 
     .profile__title {
-        margin: 0;
+        width: 196px;
+        margin-top: 30px;
+        margin-left: 20px;
         font-size: 22px;
-        line-height: 48px;
+        line-height: 26.63px;
         font-weight: 500;
         grid-area: title;
         white-space: nowrap;
     }
 
     .profile__description {
-        margin: 0;
         width: 282px;
         font-size: 14px;
         line-height: 22px;
         font-weight: 400;
+        margin-top: 14px;
         margin-bottom: 36px;
         grid-area: description;
     }
 
     .profile__edit-button {
-        margin: 0;
+        margin-left: 10px;
         background: transparent url(../images/EditButtonVector.png) center
             no-repeat;
         width: 18px;
