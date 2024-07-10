@@ -70,11 +70,13 @@
     }
 
     .profile__info {
-        width: 282px;
-        display: grid;
-        align-items: baseline;
-        justify-content: space-evenly;
+        max-width: 282px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
         text-align: center;
+        gap: 10px;
         grid-template-areas: "title button" "description description";
     }
     .profile__image {
@@ -97,6 +99,7 @@
 
     .profile__description {
         margin: 0;
+        width: 282px;
         font-size: 14px;
         line-height: 22px;
         font-weight: 400;
@@ -104,7 +107,7 @@
     }
 
     .profile__edit-button {
-        margin-left: auto;
+        margin: 0;
         background: transparent url(../images/EditButtonVector.png) center
             no-repeat;
         width: 18px;
