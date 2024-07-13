@@ -11,10 +11,13 @@
     padding-bottom: 42px;
 }
 
-.header__image:hover {
+@media screen and (max-width: 620px) {
+    .header__image {
+        margin-left: 27px;
+    }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 775px) {
     .header__image {
         margin-left: 27px;
     }
