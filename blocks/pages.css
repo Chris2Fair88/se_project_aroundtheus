@@ -10,10 +10,17 @@
 .page__content {
     font-family: Inter, Arial, sans-serif;
     color: #eee;
+    padding: 0 20px;
 }
 
 .page__section {
     max-width: 882px;
     width: 100%;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 540px;) {
+    .page__content {
+        padding: 0;
+    }
 }
