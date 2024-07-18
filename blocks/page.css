@@ -1,15 +1,11 @@
 .page {
     background-color: #000;
-}
-
-.page__title {
-    font-family: Inter, Arial, sans-serif;
-    color: #eee;
+    margin: 0;
 }
 
 .page__content {
     font-family: Inter, Arial, sans-serif;
-    color: #eee;
+    color: #fff;
     padding: 0 20px;
 }
 
@@ -19,8 +15,15 @@
     margin: 0 auto;
 }
 
-@media screen and (max-width: 540px;) {
+@media screen and (max-width: 768px) {
+    .page__content {
+        padding: 0px;
+    }
+
+
+@media screen and (max-width: 620px) {
     .page__content {
         padding: 0;
+        margin: 0;
     }
 }

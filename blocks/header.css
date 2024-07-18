@@ -1,24 +1,23 @@
 .header {
     margin: 45px auto 0;
     max-width: 880px;
-    max-height: 74px;
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 .header__image {
     max-width: 173px;
-    max-height: 33px;
     padding-bottom: 42px;
 }
 
 @media screen and (max-width: 620px) {
-    .header__image {
-        margin-left: 27px;
+    .header {
+        max-width: 320px;
+        margin: auto;
     }
-}
-
-@media screen and (max-width: 775px) {
     .header__image {
-        margin-left: 27px;
+        max-width: 126px;
+        width: 100%;
+        padding: 0;
+        margin: 28px 167px 32px 27px;
     }
 }
