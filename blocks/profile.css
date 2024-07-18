@@ -79,7 +79,6 @@
         flex-wrap: wrap;
         justify-content: center;
         text-align: center;
-        grid-template-areas: "title button" "description description";
     }
     .profile__image {
         margin: 0;
@@ -91,18 +90,14 @@
         margin-left: 20px;
         font-size: 22px;
         line-height: 26.63px;
-        font-weight: 500;
-        grid-area: title;
     }
 
     .profile__description {
         width: 282px;
         font-size: 14px;
         line-height: 22px;
-        font-weight: 400;
         margin-top: 14px;
         margin-bottom: 36px;
-        grid-area: description;
     }
 
     .profile__edit-button {
@@ -111,8 +106,6 @@
             no-repeat;
         width: 18px;
         height: 18px;
-        border: 1px solid #fff;
-        grid-area: button;
     }
 
     .profile__add-button {

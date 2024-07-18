@@ -19,11 +19,10 @@
     .page__content {
         padding: 0px;
     }
-
+}
 
 @media screen and (max-width: 620px) {
     .page__content {
-        padding: 0;
         margin: 0;
     }
 }
