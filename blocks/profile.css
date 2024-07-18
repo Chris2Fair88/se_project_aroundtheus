@@ -101,11 +101,10 @@
     }
 
     .profile__edit-button {
+        padding: 0;
         margin-left: 10px;
-        background: transparent url(../images/EditButtonVector.png) center
-            no-repeat;
-        width: 18px;
-        height: 18px;
+        background-size: 18px 18px;
+        border: inherit;
     }
 
     .profile__add-button {
