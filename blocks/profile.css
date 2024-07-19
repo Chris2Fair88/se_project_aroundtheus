@@ -30,6 +30,10 @@
     line-height: 1.14;
     font-weight: 500;
     grid-area: title;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 373px;
 }
 
 .profile__description {
@@ -38,11 +42,15 @@
     line-height: 1.2;
     font-weight: 400;
     grid-area: description;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 415px;
 }
 
 .profile__edit-button {
     margin-left: auto;
-    background: transparent url(../images/Edit\ Button.svg) center no-repeat;
+    background: transparent url(../images/EditButtonVector.png) center no-repeat;
     width: 24px;
     height: 24px;
     border: 1px solid #fff;
@@ -101,10 +109,10 @@
     }
 
     .profile__edit-button {
-        padding: 0;
         margin-left: 10px;
-        background-size: 18px 18px;
-        border: inherit;
+        background-size: 7.5px 7.5px;
+        width: 18px;
+        height: 18px;
     }
 
     .profile__add-button {
