@@ -13,7 +13,7 @@
     height: 120px;
     object-fit: cover;
     background-position: center;
-    margin-right: 24px;
+    margin: 0;
 }
 
 .profile__info {
@@ -47,7 +47,6 @@
 }
 
 .profile__edit-button {
-    margin-left: auto;
     background: transparent url(../images/EditButtonVector.png) center no-repeat;
     width: 24px;
     height: 24px;
@@ -60,7 +59,7 @@
 }
 
 .profile__add-button {
-    background: transparent url(../images/Add\ Button.svg) center no-repeat;
+    background: transparent url(../images/AddButtonVector.png) center no-repeat;
     max-width: 150px;
     width: 100%;
     height: 50px;
@@ -83,21 +82,23 @@
         max-width: 282px;
         display: flex;
         flex-wrap: wrap;
+        margin-top: 30px;
         justify-content: center;
+        align-items: center;
         text-align: center;
+        column-gap: 10px;
+        row-gap: 6px;
     }
+
     .profile__image {
         margin: 0;
     }
 
     .profile__title {
         width: 196px;
-        margin-top: 30px;
-        margin-left: 20px;
         font-size: 22px;
         line-height: 26.63px;
-        margin-left: 22px;
-        margin-bottom: 14px;
+        margin-left: 27px;
     }
 
     .profile__description {
@@ -108,7 +109,6 @@
     }
 
     .profile__edit-button {
-        margin-left: 10px;
         background-size: 7.5px 7.5px;
         width: 18px;
         height: 18px;
