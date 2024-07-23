@@ -17,11 +17,15 @@
 }
 
 .profile__info {
-    max-width: 415px;
+    max-width: 417px;
     width: 100%;
     display: grid;
     align-items: baseline;
-    grid-template-areas: "title button" "description description";
+    column-gap: 18px;
+    row-gap: 14px;
+    grid-template-areas:
+        "title button"
+        "description description";
 }
 
 .profile__title {
@@ -73,9 +77,21 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+    .profile {
+        box-sizing: border-box;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 @media screen and (max-width: 680px) {
     .profile {
+        box-sizing: border-box;
         flex-direction: column;
+        box-sizing: border-box;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .profile__info {
