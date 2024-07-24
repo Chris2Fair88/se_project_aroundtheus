@@ -2,6 +2,8 @@
 
 # GitHub Pages link: https://chris2fair88.github.io/se_project_aroundtheus/
 
+# Project Overview Video: https://www.loom.com/share/25fc57aad69b4acb8708a69b9b9c0c5f
+
 ### Overview
 
 -   Intro
