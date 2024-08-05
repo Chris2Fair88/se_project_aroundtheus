@@ -1,0 +1,50 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal__container {
+    background-color: #fff;
+    margin: auto;
+    max-width: 430px;
+    height: 330px;
+    padding: 36px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.modal__heading {
+    max-width: 330px;
+    height: 23px;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29.05px;
+    text-align: left;
+}
+
+.modal__form {
+}
+
+.modal__button {
+}
+
+.modal__close {
+    background-image: url(../images/Close.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    position: absolute;
+    border: none;
+    width: 40px;
+    height: 40px;
+    top: -45px;
+    right: -45px;
+    cursor: pointer;
+}
