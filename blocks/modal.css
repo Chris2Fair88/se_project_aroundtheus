@@ -12,11 +12,13 @@
 .modal__container {
     background-color: #fff;
     margin: auto;
-    max-width: 430px;
+    width: 430px;
     height: 330px;
     padding: 36px;
     border-radius: 10px;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal__heading {
@@ -30,9 +32,34 @@
 }
 
 .modal__form {
+    max-width: 358px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__input {
+    width: 358px;
+    height: 14px;
+    top: 306px;
+    left: 461px;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
 }
 
 .modal__button {
+    width: 358px;
+    height: 50.15px;
+    border-radius: 2px 0px 0px 0px;
+    background-color: #000;
+    color: #eee;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: center;
 }
 
 .modal__close {
