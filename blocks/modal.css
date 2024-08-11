@@ -4,13 +4,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
+    display: none;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
 
-.modal__modal_opened {
-    display: block;
+.modal__opened {
+    display: flex;
 }
 .modal__container {
     background-color: #fff;
@@ -79,6 +79,10 @@
     height: 40px;
     top: -45px;
     right: -45px;
+}
+
+.modal__close:hover {
+    opacity: 0.6;
     cursor: pointer;
 }
 
@@ -102,9 +106,6 @@
 
     .modal__form {
         max-width: 238px;
-    }
-
-    .modal__input {
     }
 
     .modal__button {
