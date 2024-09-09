@@ -41,6 +41,8 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2024 Around the U.S.</p>
         </footer>
+        //* profile edit modal*//
+
         <div class="modal" id="profile-edit-modal">
             <div class="modal__container">
                 <button
@@ -63,6 +65,35 @@
                         name="description"
                         id="profile-description-input"
                         placeholder="About You"
+                    />
+                    <button class="modal__button">Save</button>
+                </form>
+            </div>
+        </div>
+
+        //*add card modal*//
+        <div class="modal" id="add-card-modal">
+            <div class="modal__container">
+                <button
+                    class="modal__close"
+                    id="add-image-close-button"
+                    type="button"
+                ></button>
+                <h2 class="modal__heading">New Place</h2>
+                <form class="modal__form">
+                    <input
+                        class="modal__input modal__input_type_title"
+                        type="text"
+                        name="title"
+                        id="image-title-input"
+                        placeholder="Title"
+                    />
+                    <input
+                        class="modal__input modal__input_type_url"
+                        type="text"
+                        name="url"
+                        id="image-description-input"
+                        placeholder="Image URL"
                     />
                     <button class="modal__button">Save</button>
                 </form>
