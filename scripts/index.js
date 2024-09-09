@@ -70,11 +70,11 @@ const cardListEl = document.querySelector(".cards__list");
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
-    openPopup();
+    openPopup(profileEditModal);
 });
 
 profileModalCloseButton.addEventListener("click", () => {
-    closePopup();
+    closePopup(profileEditModal);
 });
 
 profileEditForm.addEventListener("submit", (e) => {
@@ -87,7 +87,11 @@ profileEditForm.addEventListener("submit", (e) => {
 addCardButton.addEventListener("click", () => {
     addCardTitleInput.value = addCardTitle.textContent;
     addCardURLInput.value = addCardURL.textContent;
-    openPopup();
+    openPopup(addCardModal);
+});
+
+addImageCloseButton.addEventListener("click", () => {
+    closePopup(addCardModal);
 });
 
 initialCards.forEach((cardData) => {
