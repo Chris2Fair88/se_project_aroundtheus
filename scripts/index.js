@@ -24,7 +24,7 @@ const initialCards = [
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
     },
 ];
-
+//profile edit button
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector("#modal-close-button");
@@ -34,7 +34,7 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
     "#profile-description-input"
 );
-
+//add card button
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
 const addImageCloseButton = document.querySelector("#add-image-close-button");
@@ -55,6 +55,11 @@ function getCardElement(cardData) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImageEl = cardElement.querySelector(".card__image");
     const cardtitleEl = cardElement.querySelector(".card__title");
+    const likeButton = cardElement.querySelector(".card__like-button");
+    likeButton.addEventListener("click", () => {
+        likeButton.classList.toggle("card__like-button_active");
+    });
+
     cardtitleEl.textContent = cardData.name;
     cardImageEl.alt = cardData.name;
     cardImageEl.src = cardData.link;
@@ -64,6 +69,8 @@ function getCardElement(cardData) {
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate =
     document.querySelector("#card-template").content.firstElementChild;
+const addCardTitleForm = document.querySelector(".modal__input_type_title");
+const addCardURLForm = document.querySelector(".modal__input_type_url");
 
 const cardListEl = document.querySelector(".cards__list");
 
@@ -81,7 +88,7 @@ profileEditForm.addEventListener("submit", (e) => {
     e.preventDefault();
     profileTitle.textContent = profileTitleInput.value;
     profileDescription.textContent = profileDescriptionInput.value;
-    closePopup();
+    closePopup(profileEditModal);
 });
 
 addCardButton.addEventListener("click", () => {
@@ -94,7 +101,15 @@ addImageCloseButton.addEventListener("click", () => {
     closePopup(addCardModal);
 });
 
+addCardModal.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const cardElement = getCardElement();
+    closePopup(addCardModal);
+});
+
 initialCards.forEach((cardData) => {
     const cardElement = getCardElement(cardData);
     cardListEl.prepend(cardElement);
 });
+
+const likeButtons = document.querySelectorAll(".card__like-button");
