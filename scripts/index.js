@@ -66,6 +66,11 @@ function getCardElement(cardData) {
     return cardElement;
 }
 
+function renderCard(cardData) {
+    const newCard = getCardElement(cardData);
+    cardListEl.prepend(newCard);
+}
+
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate =
     document.querySelector("#card-template").content.firstElementChild;
@@ -101,15 +106,16 @@ addImageCloseButton.addEventListener("click", () => {
     closePopup(addCardModal);
 });
 
-addCardModal.addEventListener("submit", (e) => {
+addCardTitleForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const cardElement = getCardElement();
+    const title = addCardTitleInput.value;
+    const url = addCardURLInput.value;
+    const cardElement = getCardElement(title, url);
+    cardListEl.prepend(cardElement);
     closePopup(addCardModal);
+    addCardModal.reset();
 });
 
-initialCards.forEach((cardData) => {
-    const cardElement = getCardElement(cardData);
-    cardListEl.prepend(cardElement);
-});
+initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 const likeButtons = document.querySelectorAll(".card__like-button");
