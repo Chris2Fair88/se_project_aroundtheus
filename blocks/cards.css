@@ -11,3 +11,17 @@
     grid-column-gap: 17px;
     grid-row-gap: 20px;
 }
+
+.cards__delete-button {
+    position: absolute;
+    background: transparent url(../images/CardDeleteButton.svg);
+    width: 18px;
+    height: 19.3px;
+    border: none;
+    margin: 18px 15px 249px 244.7px;
+}
+
+.cards__delete-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
