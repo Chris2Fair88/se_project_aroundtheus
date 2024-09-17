@@ -60,8 +60,12 @@ function getCardElement(cardData) {
         likeButton.classList.toggle("card__like-button_active");
     });
 
-    const cardsDeleteButton = document.querySelector(".cards__delete-button");
-    cardsDeleteButton.addEventListener("click", () => {});
+    const cardsDeleteButton = cardElement.querySelector(
+        ".cards__delete-button"
+    );
+    cardsDeleteButton.addEventListener("click", () => {
+        cardElement.remove();
+    });
 
     cardtitleEl.textContent = cardData.name;
     cardImageEl.alt = cardData.name;
