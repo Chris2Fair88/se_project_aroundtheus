@@ -128,3 +128,8 @@ addCardForm.addEventListener("submit", (e) => {
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 const likeButtons = document.querySelectorAll(".card__like-button");
+
+const imageModal = document.querySelector(".image__modal");
+const imageModalCloseButton = document.querySelector(".image__modal-close");
+//imageModal.addEventListener("click", () => {
+//})
