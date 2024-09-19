@@ -79,8 +79,8 @@ function getCardElement(cardData) {
         imageModalImg.src = cardData.link;
         imageModalImg.alt = cardData.name;
         imageModalText.textContent = cardData.name;
+        openPopup(imageModal);
     });
-    openPopup(imageModal);
 
     cardtitleEl.textContent = cardData.name;
     cardImageEl.alt = cardData.name;
@@ -126,6 +126,10 @@ addCardButton.addEventListener("click", () => {
 
 addImageCloseButton.addEventListener("click", () => {
     closePopup(addCardModal);
+});
+
+imageModalCloseButton.addEventListener("click", () => {
+    closePopup(imageModal);
 });
 
 const addCardForm = addCardModal.querySelector(".modal__form");
