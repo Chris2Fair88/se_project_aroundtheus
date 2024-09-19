@@ -43,6 +43,14 @@ const addCardURL = document.querySelector(".modal__input_type_url");
 const addCardTitleInput = document.querySelector("#image-title-input");
 const addCardURLInput = document.querySelector("#image-description-input");
 
+//image modal
+const imageModal = document.querySelector("#card-image-modal");
+const imageModalImg = document.querySelector(".modal__image");
+const imageModalText = document.querySelector(".modal__description");
+const imageModalCloseButton = document.querySelector(
+    "#image-modal-close-button"
+);
+
 function openPopup(modal) {
     modal.classList.add("modal_opened");
 }
@@ -66,6 +74,13 @@ function getCardElement(cardData) {
     cardsDeleteButton.addEventListener("click", () => {
         cardElement.remove();
     });
+
+    cardImageEl.addEventListener("click", () => {
+        imageModalImg.src = cardData.link;
+        imageModalImg.alt = cardData.name;
+        imageModalText.textContent = cardData.name;
+    });
+    openPopup(imageModal);
 
     cardtitleEl.textContent = cardData.name;
     cardImageEl.alt = cardData.name;
@@ -128,8 +143,3 @@ addCardForm.addEventListener("submit", (e) => {
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 const likeButtons = document.querySelectorAll(".card__like-button");
-
-const imageModal = document.querySelector(".image__modal");
-const imageModalCloseButton = document.querySelector(".image__modal-close");
-//imageModal.addEventListener("click", () => {
-//})

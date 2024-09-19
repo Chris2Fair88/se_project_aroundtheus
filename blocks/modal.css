@@ -87,7 +87,7 @@
     cursor: pointer;
 }
 
-.image__modal {
+.modal__container_type_preview {
     position: fixed;
     top: 0;
     left: 0;
@@ -95,19 +95,13 @@
     bottom: 0;
     display: none;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1;
 }
 
-.image__modal-container {
-    box-sizing: border-box;
-    background: transparent;
-    position: relative;
-    display: flex;
+.modal__image {
+    max-width: 75vw;
+    max-height: 75vh;
 }
-
-.image__modal-close {
-}
-
 @media screen and (max-width: 680px) {
     .modal__container {
         max-width: 282px;
