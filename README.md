@@ -19,8 +19,10 @@ This Project is used as an example to demonstrate various web development concep
 3. The 'hover' and 'cursor:pointer' attributes
 4. Cards and Lists
 5. Responsive Design
+6. Javascript
+7. Popups, called "Modals"
 
-These 5 concepts aren't mutually exclusive to this particular Project, compared to previous Projects with TripleTen, but this one is a culmination of said previous projects. This has been a challenge!
+These 7 concepts aren't mutually exclusive to this particular Project, compared to previous Projects with TripleTen, but this one is a culmination of said previous projects. This has been a challenge!
 
 **Figma**
 
