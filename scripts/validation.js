@@ -1,12 +1,12 @@
-function setEventListeners(formEL, config) {
+function setEventListeners(formEl, config) {
     const { inputSelector } = config;
-    const inputELs = { ...formEL.querySelectorAll(inputSelector) };
-    console.log(inputELs);
+    const inputEls = { ...formEl.querySelectorAll(inputSelector) };
+    console.log(inputEls);
 }
 function enableValidation(config) {
-    const formELs = { ...document.querySelectorAll(config.formSelector) };
-    formELs.forEach((formEL) => {
-        formEL.addEventListener("submit", (e) => {
+    const formEls = { ...document.querySelectorAll(config.formSelector) };
+    formEls.forEach((formEl) => {
+        formEl.addEventListener("submit", (e) => {
             e.preventDefault();
         });
     });
