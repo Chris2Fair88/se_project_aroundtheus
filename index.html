@@ -58,14 +58,28 @@
                         name="title"
                         id="profile-title-input"
                         placeholder="Your Name"
+                        minlength="2"
+                        maxlength="40"
+                        required
                     />
+                    <span
+                        class="modal__error"
+                        id="profile-title-input-error"
+                    ></span>
                     <input
                         class="modal__input"
                         type="text"
                         name="description"
                         id="profile-description-input"
                         placeholder="About You"
+                        minlength="2"
+                        maxlength="200"
+                        required
                     />
+                    <span
+                        class="modal__error"
+                        id="profile-title-description-error"
+                    ></span>
                     <button class="modal__button">Save</button>
                 </form>
             </div>

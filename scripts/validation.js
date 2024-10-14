@@ -1,10 +1,51 @@
+function showInputError(formEl, inputEl, { inputErrorClass }) {
+    const errorMessageEl = formEl.querySelectorAll(`${inputEl.id}-error`);
+    inputEl.classList.add(inputErrorClass);
+    errorMessageEl.textContent = inputEl.validationMessage;
+    errorMessageEl.classList.add(errorClass);
+}
+
+function hideInputError(formEl, inputEl, { inputErrorClass }) {
+    const errorMessageEl = formEl.querySelectorAll(`${inputEl.id}-error`);
+    inputEl.classList.remove(inputErrorClass);
+    errorMessageEl.textContent = "";
+    errorMessageEl.classList.remove(errorClass);
+}
+function checkInputValidity(formEl, inputEl, config) {
+    if (!inputEl.validity.valid) {
+        showInputError(formEl, inputEl, config);
+    } else {
+        hideInputError(formEl, inputEl, config);
+    }
+}
+
+function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+    const foundInvalid = false;
+    inputEls.forEach((inputEl) => {
+        if (!inputEl.validity.valid) {
+            foundInvalid = true;
+        }
+    });
+    if (foundInvalid) {
+        submitButton.classList.add(inactiveButtonClass);
+    } else {
+        submitButton.classList.remove(inactiveButtonClass);
+    }
+}
+
 function setEventListeners(formEl, config) {
     const { inputSelector } = config;
     const inputEls = { ...formEl.querySelectorAll(inputSelector) };
-    console.log(inputEls);
+    const submitButton = formEl.querySelector(".modal__button");
+    inputEls.forEach((inputEl) => {
+        inputEl.addEventListener("input", (e) => {
+            checkInputValidity(formEl, inputEl, config);
+            toggleButtonState(inputEls, submitButton, config);
+        });
+    });
 }
 function enableValidation(config) {
-    const formEls = { ...document.querySelectorAll(config.formSelector) };
+    const formEls = [...document.querySelectorAll(config.formSelector)];
     formEls.forEach((formEl) => {
         formEl.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -12,6 +53,17 @@ function enableValidation(config) {
     });
 }
 
+const escapeButtonClose = document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        closePopup(profileEditModal, addCardModal);
+    }
+});
+
+const modalOverlayClose = document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal_opened")) {
+        closePopup(e.target);
+    }
+});
 const config = {
     formSelector: ".modal__form",
     inputSelector: ".modal__input",
