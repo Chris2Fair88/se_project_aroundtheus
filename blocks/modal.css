@@ -75,6 +75,11 @@
     border: none;
 }
 
+.modal__button_disabled {
+    border: 1px 0px 0px 0px;
+    opacity: 0.2px;
+}
+
 .modal__close {
     background-image: url(../images/Close.svg);
     background-size: contain;
@@ -115,9 +120,6 @@
     font-size: 12px;
     line-height: 15px;
     color: #f00;
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
     transition: opacity 0.3s;
 }
 
