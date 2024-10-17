@@ -36,7 +36,7 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 function setEventListeners(formEl, config) {
     const { inputSelector } = config;
     const inputEls = formEl.querySelectorAll(inputSelector);
-    const submitButton = formEl.querySelector(".modal__button");
+    const submitButton = config.querySelector(".modal__button");
     inputEls.forEach((inputEl) => {
         inputEl.addEventListener("input", (e) => {
             checkInputValidity(formEl, inputEl, config);
@@ -54,18 +54,6 @@ function enableValidation(config) {
     });
 }
 
-const escapeButtonClose = document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        closePopup(profileEditModal);
-        closePopup(addCardModal);
-    }
-});
-
-const modalOverlayClose = document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal_opened")) {
-        closePopup(e.target);
-    }
-});
 const config = {
     formSelector: ".modal__form",
     inputSelector: ".modal__input",

@@ -132,6 +132,19 @@ imageModalCloseButton.addEventListener("click", () => {
     closePopup(imageModal);
 });
 
+const escapeButtonClose = document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        closePopup(profileEditModal);
+        closePopup(addCardModal);
+    }
+});
+
+const modalOverlayClose = document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal_opened")) {
+        closePopup(e.target);
+    }
+});
+
 const addCardForm = addCardModal.querySelector(".modal__form");
 
 addCardForm.addEventListener("submit", (e) => {
@@ -145,5 +158,3 @@ addCardForm.addEventListener("submit", (e) => {
 });
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
-
-const likeButtons = document.querySelectorAll(".card__like-button");
