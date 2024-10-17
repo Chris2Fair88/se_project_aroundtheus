@@ -19,8 +19,8 @@ function checkInputValidity(formEl, inputEl, config) {
     }
 }
 
-function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
-    const foundInvalid = false;
+function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+    let foundInvalid = false;
     inputEls.forEach((inputEl) => {
         if (!inputEl.validity.valid) {
             foundInvalid = true;
@@ -56,7 +56,8 @@ function enableValidation(config) {
 
 const escapeButtonClose = document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-        closePopup(profileEditModal, addCardModal);
+        closePopup(profileEditModal);
+        closePopup(addCardModal);
     }
 });
 

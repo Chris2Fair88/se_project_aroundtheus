@@ -78,9 +78,11 @@
                     />
                     <span
                         class="modal__error"
-                        id="profile-title-description-error"
+                        id="profile-description-input-error"
                     ></span>
-                    <button class="modal__button">Save</button>
+                    <button class="modal__button modal__button_disabled">
+                        Save
+                    </button>
                 </form>
             </div>
         </div>
@@ -101,14 +103,26 @@
                         name="title"
                         id="image-title-input"
                         placeholder="Title"
+                        minlength="1"
+                        maxlength="30"
+                        required
                     />
+                    <span
+                        class="modal__error"
+                        id="image-title-input-error"
+                    ></span>
                     <input
                         class="modal__input modal__input_type_url"
                         type="text"
                         name="url"
                         id="image-description-input"
                         placeholder="Image URL"
+                        required
                     />
+                    <span
+                        class="modal__error"
+                        id="image-description-input-error"
+                    ></span>
                     <button class="modal__button">Save</button>
                 </form>
             </div>
