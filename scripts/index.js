@@ -132,12 +132,19 @@ imageModalCloseButton.addEventListener("click", () => {
     closePopup(imageModal);
 });
 
-const escapeButtonClose = document.addEventListener("keydown", (e) => {
+function handleEscClose(e) {
     if (e.key === "Escape") {
-        closePopup(profileEditModal);
-        closePopup(addCardModal);
+        const openedPopup = document.querySelector("modal_opened");
+        if (openedPopup) {
+            closePopup(openedPopup);
+        }
     }
-});
+}
+
+function openPopup(modal) {
+    modal.classList.add("modal_opened");
+    document.addEventListener("keydown", handleEscClose(e));
+}
 
 const modalOverlayClose = document.addEventListener("click", (e) => {
     if (e.target.classList.contains("modal_opened")) {
