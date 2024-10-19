@@ -51,14 +51,6 @@ const imageModalCloseButton = document.querySelector(
     "#image-modal-close-button"
 );
 
-function openPopup(modal) {
-    modal.classList.add("modal_opened");
-}
-
-function closePopup(modal) {
-    modal.classList.remove("modal_opened");
-}
-
 function getCardElement(cardData) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImageEl = cardElement.querySelector(".card__image");
@@ -110,7 +102,7 @@ function handleCloseOverlay(e) {
 
 function openPopup(modal) {
     modal.classList.add("modal_opened");
-    document.addEventListener("keydown", handleEscClose(e));
+    document.addEventListener("keydown", handleEscClose);
     modal.addEventListener("click", handleCloseOverlay);
 }
 
