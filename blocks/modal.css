@@ -114,8 +114,11 @@
     font-size: 12px;
     font-weight: 400;
 }
-
+.modal__label {
+    position: relative;
+}
 .modal__error {
+    position: absolute;
     font-size: 12px;
     line-height: 15px;
     color: #f00;
