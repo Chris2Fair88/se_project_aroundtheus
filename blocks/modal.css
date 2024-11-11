@@ -53,6 +53,7 @@
     font-weight: 400;
     text-align: left;
     margin-top: 54px;
+    width: 100%;
 }
 
 .modal__input:nth-of-type(2n) {
@@ -123,6 +124,7 @@
     line-height: 15px;
     color: #f00;
     transition: opacity 0.3s;
+    width: 100%;
 }
 
 @media screen and (max-width: 680px) {
