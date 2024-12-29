@@ -10,8 +10,12 @@ export default class Card {
             .addEventListener("click", () => {
                 likeButton.classList.toggle("card__like-button_active");
             });
-        const deleteButton =
-            this._cardElement.querySelector(".card__like-button");
+
+        this._cardElement
+            .querySelector(".cards__delete-button")
+            .addEventListener("click", () => {});
+        //const deleteButton =
+        //this._cardElement.querySelector(".card__like-button");
     }
 
     getView() {
