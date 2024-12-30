@@ -1,5 +1,5 @@
 import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
+//import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
     {
@@ -92,9 +92,9 @@ function getCardElement(cardData) {
     return cardElement;
 }
 
-function renderCard(cardData) {
-    const newCard = getCardElement(cardData);
-    cardListEl.prepend(newCard);
+function createCard(cardData) {
+    const card = new Card(cardData, "#card-template");
+    return card.getView();
 }
 
 function handleEscClose(e) {
@@ -175,4 +175,4 @@ addCardForm.addEventListener("submit", (e) => {
     addCardForm.reset();
 });
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+initialCards.forEach((cardData) => createCard(cardData, cardListEl));
