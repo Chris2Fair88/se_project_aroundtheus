@@ -92,11 +92,6 @@ function getCardElement(cardData) {
     return cardElement;
 }
 
-function createCard(cardData) {
-    const card = new Card(cardData, "#card-template");
-    return card.getView();
-}
-
 function handleEscClose(e) {
     if (e.key === "Escape") {
         const openedPopup = document.querySelector(".modal_opened");
@@ -175,4 +170,13 @@ addCardForm.addEventListener("submit", (e) => {
     addCardForm.reset();
 });
 
-initialCards.forEach((cardData) => createCard(cardData, cardListEl));
+function createCard(cardData) {
+    const card = new Card(cardData, "#card-template");
+    return card.getView();
+}
+
+function renderCard(cardData, cardListEl) {
+    const cardElement = createCard(cardData);
+    cardListEl.prepend(cardElement);
+}
+initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
