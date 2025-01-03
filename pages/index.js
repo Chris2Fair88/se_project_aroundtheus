@@ -69,8 +69,9 @@ function getCardElement(cardData) {
     const cardtitleEl = cardElement.querySelector(".card__title");
 
     const likeButton = cardElement.querySelector(".card__like-button");
+
     likeButton.addEventListener("click", () => {
-        likeButton.classList.toggle("card__like-button_active");
+        likeButton.classList.toggle(".card__like-button_active");
     });
 
     const cardsDeleteButton = cardElement.querySelector(
@@ -179,7 +180,7 @@ function handleImageClick(name, link) {
 }
 
 function createCard(cardData) {
-    const card = new Card(cardData, "#card-template");
+    const card = new Card(cardData, "#card-template", handleImageClick);
     return card.getView();
 }
 

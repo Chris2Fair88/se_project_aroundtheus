@@ -9,7 +9,7 @@ export default class Card {
         this._cardElement
             .querySelector(".card__like-button")
             .addEventListener("click", () => {
-                likeButton.classList.toggle("card__like-button_active");
+                this._cardElement.classList.toggle(".card__like-button_active");
             });
 
         this._cardElement
@@ -18,8 +18,8 @@ export default class Card {
                 this._cardElement.remove();
             });
 
-        this._cardImageEl.addEventListener("click", () => 
-            this._handleImageClick(this._name, this._link);
+        this._cardImageEl.addEventListener("click", () =>
+            this._handleImageClick(this._name, this._link)
         );
     }
 
@@ -28,12 +28,13 @@ export default class Card {
             .querySelector(this._cardSelector)
             .content.querySelector(".card")
             .cloneNode(true);
-        this._setEventListeners();
+
         this._cardImageEl = this._cardElement.querySelector(".card__image");
         this._cardtitleEl = this._cardElement.querySelector(".card__title");
         this._cardImageEl.src = this._link;
         this._cardImageEl.alt = this._name;
         this._cardtitleEl.textContent = this._name;
+        this._setEventListeners();
         return this._cardElement;
     }
 }
