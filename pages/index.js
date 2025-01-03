@@ -171,6 +171,13 @@ addCardForm.addEventListener("submit", (e) => {
     addCardForm.reset();
 });
 
+function handleImageClick(name, link) {
+    imageModalImg.src = cardData.link;
+    imageModalImg.alt = cardData.name;
+    imageModalText.textContent = cardData.name;
+    openPopup(imageModal);
+}
+
 function createCard(cardData) {
     const card = new Card(cardData, "#card-template");
     return card.getView();
