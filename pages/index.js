@@ -35,6 +35,12 @@ const cardData = {
 
 const card = new Card(cardData, "#card-template");
 
+const addCardFormValidator = new FormValidator(config, addCardForm);
+addCardFormValidator.enableValidation();
+
+const editProfileFormValidator = new FormValidator(config, profileEditForm);
+editProfileFormValidator.enableValidation();
+
 card.getView();
 //profile edit button
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -166,7 +172,7 @@ addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = addCardTitleInput.value;
     const url = addCardURLInput.value;
-    const cardElement = getCardElement({ name: title, link: url });
+    const cardElement = renderCard();
     cardListEl.prepend(cardElement);
     closePopup(addCardModal);
     addCardForm.reset();
