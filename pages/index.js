@@ -35,10 +35,10 @@ const cardData = {
 
 const card = new Card(cardData, "#card-template");
 
-const addCardFormValidator = new FormValidator(config, addCardForm);
+const addCardFormValidator = new FormValidator(settings, addCardForm);
 addCardFormValidator.enableValidation();
 
-const editProfileFormValidator = new FormValidator(config, profileEditForm);
+const editProfileFormValidator = new FormValidator(settings, profileEditForm);
 editProfileFormValidator.enableValidation();
 
 card.getView();
@@ -172,7 +172,7 @@ addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = addCardTitleInput.value;
     const url = addCardURLInput.value;
-    const cardElement = renderCard();
+    const cardElement = renderCard(settings);
     cardListEl.prepend(cardElement);
     closePopup(addCardModal);
     addCardForm.reset();
