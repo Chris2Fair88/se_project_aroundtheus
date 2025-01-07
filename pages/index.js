@@ -172,7 +172,7 @@ addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = addCardTitleInput.value;
     const url = addCardURLInput.value;
-    const cardElement = renderCard(settings);
+    const cardElement = renderCard({ name: title, link: url }, cardListEl);
     cardListEl.prepend(cardElement);
     closePopup(addCardModal);
     addCardForm.reset();
@@ -195,3 +195,11 @@ function renderCard(cardData, cardListEl) {
     cardListEl.prepend(cardElement);
 }
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+const settings = {
+    inputSelector: "modal__input",
+    submitButtonSelector: "modal__button",
+    inactiveButtonClass: "modal__button_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible",
+};
