@@ -35,12 +35,6 @@ const cardData = {
 
 const card = new Card(cardData, "#card-template");
 
-const addCardFormValidator = new FormValidator(settings, addCardForm);
-addCardFormValidator.enableValidation();
-
-const editProfileFormValidator = new FormValidator(settings, profileEditForm);
-editProfileFormValidator.enableValidation();
-
 card.getView();
 //profile edit button
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -197,9 +191,15 @@ function renderCard(cardData, cardListEl) {
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 const settings = {
-    inputSelector: "modal__input",
-    submitButtonSelector: "modal__button",
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__button",
     inactiveButtonClass: "modal__button_disabled",
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible",
 };
+
+const addCardFormValidator = new FormValidator(settings, addCardForm);
+addCardFormValidator.enableValidation();
+
+const editProfileFormValidator = new FormValidator(settings, profileEditForm);
+editProfileFormValidator.enableValidation();
