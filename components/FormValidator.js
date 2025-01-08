@@ -7,7 +7,7 @@ export default class FormValidator {
         this._form = formEl;
     }
 
-    _showinputerror(inputEl) {
+    _showInputError(inputEl) {
         const errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
         inputEl.classList.add(this._inputErrorClass);
         errorMessageEl.textContent = inputEl.validationMessage;
@@ -37,10 +37,10 @@ export default class FormValidator {
             }
         });
         if (foundInvalid) {
-            this._submitButton.classList.add(inactiveButtonClass);
+            this._submitButton.classList.add(this._inactiveButtonClass);
             this._submitButton.disabled = true;
         } else {
-            this._submitButton.classList.remove(inactiveButtonClass);
+            this._submitButton.classList.remove(this._inactiveButtonClass);
             this._submitButton.disabled = false;
         }
     }
@@ -64,6 +64,6 @@ export default class FormValidator {
         this._form.addEventListener("submit", (e) => {
             e.preventDefault();
         });
-        this._setEventListeners(settings, formEl);
+        this._setEventListeners();
     }
 }
