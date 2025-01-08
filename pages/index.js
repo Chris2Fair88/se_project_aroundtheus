@@ -48,9 +48,6 @@ const cardData = {
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
 };
 
-//const card = new Card(cardData, "#card-template");
-
-card.getView();
 //profile edit button
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -77,37 +74,6 @@ const imageModalText = document.querySelector(".modal__description");
 const imageModalCloseButton = document.querySelector(
     "#image-modal-close-button"
 );
-
-function renderCard(cardData) {
-    const cardElement = cardTemplate.cloneNode(true);
-    const cardImageEl = cardElement.querySelector(".card__image");
-    const cardtitleEl = cardElement.querySelector(".card__title");
-
-    const likeButton = cardElement.querySelector(".card__like-button");
-
-    likeButton.addEventListener("click", () => {
-        likeButton.classList.toggle(".card__like-button_active");
-    });
-
-    const cardsDeleteButton = cardElement.querySelector(
-        ".cards__delete-button"
-    );
-    cardsDeleteButton.addEventListener("click", () => {
-        cardElement.remove();
-    });
-
-    cardImageEl.addEventListener("click", () => {
-        imageModalImg.src = cardData.link;
-        imageModalImg.alt = cardData.name;
-        imageModalText.textContent = cardData.name;
-        openPopup(imageModal);
-    });
-
-    cardtitleEl.textContent = cardData.name;
-    cardImageEl.alt = cardData.name;
-    cardImageEl.src = cardData.link;
-    return cardElement;
-}
 
 function handleEscClose(e) {
     if (e.key === "Escape") {
@@ -188,9 +154,9 @@ addCardForm.addEventListener("submit", (e) => {
 });
 
 function handleImageClick(name, link) {
-    imageModalImg.src = cardData.link;
-    imageModalImg.alt = cardData.name;
-    imageModalText.textContent = cardData.name;
+    imageModalImg.src = link;
+    imageModalImg.alt = name;
+    imageModalText.textContent = name;
     openPopup(imageModal);
 }
 
