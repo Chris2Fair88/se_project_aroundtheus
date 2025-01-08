@@ -31,9 +31,24 @@ const initialCards = [
 const cardData = {
     name: "Yosemite Valley",
     link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+
+    name: "Bald Mountains",
+    link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
 };
 
-const card = new Card(cardData, "#card-template");
+//const card = new Card(cardData, "#card-template");
 
 card.getView();
 //profile edit button
@@ -63,7 +78,7 @@ const imageModalCloseButton = document.querySelector(
     "#image-modal-close-button"
 );
 
-function getCardElement(cardData) {
+function renderCard(cardData) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImageEl = cardElement.querySelector(".card__image");
     const cardtitleEl = cardElement.querySelector(".card__title");
@@ -167,7 +182,7 @@ addCardForm.addEventListener("submit", (e) => {
     const title = addCardTitleInput.value;
     const url = addCardURLInput.value;
     const cardElement = renderCard({ name: title, link: url }, cardListEl);
-    cardListEl.prepend(cardElement);
+    //cardListEl.prepend(cardElement);
     closePopup(addCardModal);
     addCardForm.reset();
 });
@@ -188,6 +203,7 @@ function renderCard(cardData, cardListEl) {
     const cardElement = createCard(cardData);
     cardListEl.prepend(cardElement);
 }
+
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 const settings = {
