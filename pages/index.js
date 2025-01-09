@@ -127,6 +127,7 @@ addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = addCardTitleInput.value;
     const url = addCardURLInput.value;
+    renderCard({ name: title, link: url }, cardListEl);
     closePopup(addCardModal);
     addCardForm.reset();
     addCardFormValidator.disableButton();
