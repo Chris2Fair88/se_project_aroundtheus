@@ -2,6 +2,10 @@ import "../pages/index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Popup from "../components/Popup.js";
+import Section from "../components/Section.js";
+
 import {
     settings,
     initialCards,
@@ -28,31 +32,10 @@ import {
     imageModalCloseButton,
 } from "../utils/constants.js";
 
-function handleEscClose(e) {
-    if (e.key === "Escape") {
-        const openedPopup = document.querySelector(".modal_opened");
-        if (openedPopup) {
-            closePopup(openedPopup);
-        }
-    }
-}
-
 function handleCloseOverlay(e) {
     if (e.target.classList.contains("modal_opened")) {
         closePopup(e.target);
     }
-}
-
-function openPopup(modal) {
-    modal.classList.add("modal_opened");
-    document.addEventListener("keydown", handleEscClose);
-    modal.addEventListener("click", handleCloseOverlay);
-}
-
-function closePopup(modal) {
-    modal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", handleEscClose);
-    modal.removeEventListener("click", handleCloseOverlay);
 }
 
 profileEditButton.addEventListener("click", () => {
