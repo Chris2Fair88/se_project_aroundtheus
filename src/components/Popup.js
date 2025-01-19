@@ -21,6 +21,12 @@ export default class Popup {
         }
     }
 
+    _handleCloseOverlay(e) {
+        if (e.target.classList.contains("modal_opened")) {
+            this.close(e.target);
+        }
+    }
+
     setEventListeners() {
         this._modalElement
             .querySelector(".modal__close-button")

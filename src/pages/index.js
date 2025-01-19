@@ -32,41 +32,35 @@ import {
     imageModalCloseButton,
 } from "../utils/constants.js";
 
-function handleCloseOverlay(e) {
-    if (e.target.classList.contains("modal_opened")) {
-        closePopup(e.target);
-    }
-}
-
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
-    openPopup(profileEditModal);
+    open(profileEditModal);
 });
 
 profileModalCloseButton.addEventListener("click", () => {
-    closePopup(profileEditModal);
+    close(profileEditModal);
 });
 
 profileEditForm.addEventListener("submit", (e) => {
     e.preventDefault();
     profileTitle.textContent = profileTitleInput.value;
     profileDescription.textContent = profileDescriptionInput.value;
-    closePopup(profileEditModal);
+    close(profileEditModal);
 });
 
 addCardButton.addEventListener("click", () => {
     addCardTitleInput.value = addCardTitle.textContent;
     addCardURLInput.value = addCardURL.textContent;
-    openPopup(addCardModal);
+    open(addCardModal);
 });
 
 addImageCloseButton.addEventListener("click", () => {
-    closePopup(addCardModal);
+    close(addCardModal);
 });
 
 imageModalCloseButton.addEventListener("click", () => {
-    closePopup(imageModal);
+    close(imageModal);
 });
 
 addCardForm.addEventListener("submit", (e) => {
@@ -74,7 +68,7 @@ addCardForm.addEventListener("submit", (e) => {
     const title = addCardTitleInput.value;
     const url = addCardURLInput.value;
     renderCard({ name: title, link: url }, cardListEl);
-    closePopup(addCardModal);
+    close(addCardModal);
     addCardForm.reset();
     addCardFormValidator.disableButton();
 });
@@ -83,7 +77,7 @@ function handleImageClick(name, link) {
     imageModalImg.src = link;
     imageModalImg.alt = name;
     imageModalText.textContent = name;
-    openPopup(imageModal);
+    open(imageModal);
 }
 
 function createCard(cardData) {
