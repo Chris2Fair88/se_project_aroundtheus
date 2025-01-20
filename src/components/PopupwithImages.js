@@ -1,4 +1,4 @@
-class PopupWithImages extends Popup {
+export default class PopupWithImages extends Popup {
     constructor(modalSelector) {
         super(modalSelector);
         this._modalImage = this._modal.querySelector(".modal__image");

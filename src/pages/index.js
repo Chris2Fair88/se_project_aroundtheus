@@ -5,6 +5,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Popup from "../components/Popup.js";
 import Section from "../components/Section.js";
+import PopupWithImages from "../components/PopupWithImages.js";
 
 import {
     settings,
@@ -62,16 +63,17 @@ function renderCard(cardData, cardListEl) {
 }
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
-const addCardModal = new PopupWithForm("#add-card-modal", (formData) => {
+
+const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const card = new Card(formData, "#card-template");
     const cardElement = card.generateCard();
     document.querySelector(".cards__list").prepend(cardElement);
-    addCardModal.close();
+    addCardPopup.close();
 });
-addCardModal.setEventListeners();
+addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
-    addCardModal.open();
+    addCardPopup.open();
 });
 
 const editProfileModal = new PopupWithForm(
