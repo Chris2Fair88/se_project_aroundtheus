@@ -32,21 +32,17 @@ import {
     imageModalCloseButton,
 } from "../utils/constants.js";
 
+function handleImageClick(name, link) {
+    imageModalImg.src = link;
+    imageModalImg.alt = name;
+    imageModalText.textContent = name;
+    open(imageModal);
+}
+
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
     open(profileEditModal);
-});
-
-profileModalCloseButton.addEventListener("click", () => {
-    close(profileEditModal);
-});
-
-profileEditForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    profileTitle.textContent = profileTitleInput.value;
-    profileDescription.textContent = profileDescriptionInput.value;
-    close(profileEditModal);
 });
 
 addCardButton.addEventListener("click", () => {
@@ -54,31 +50,6 @@ addCardButton.addEventListener("click", () => {
     addCardURLInput.value = addCardURL.textContent;
     open(addCardModal);
 });
-
-addImageCloseButton.addEventListener("click", () => {
-    close(addCardModal);
-});
-
-imageModalCloseButton.addEventListener("click", () => {
-    close(imageModal);
-});
-
-addCardForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const title = addCardTitleInput.value;
-    const url = addCardURLInput.value;
-    renderCard({ name: title, link: url }, cardListEl);
-    close(addCardModal);
-    addCardForm.reset();
-    addCardFormValidator.disableButton();
-});
-
-function handleImageClick(name, link) {
-    imageModalImg.src = link;
-    imageModalImg.alt = name;
-    imageModalText.textContent = name;
-    open(imageModal);
-}
 
 function createCard(cardData) {
     const card = new Card(cardData, "#card-template", handleImageClick);
@@ -91,6 +62,31 @@ function renderCard(cardData, cardListEl) {
 }
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+const addCardModal = new PopupWithForm("#add-card-modal", (formData) => {
+    const card = new Card(formData, "#card-template");
+    const cardElement = card.generateCard();
+    document.querySelector(".cards__list").prepend(cardElement);
+    addCardModal.close();
+});
+addCardModal.setEventListeners();
+
+addCardButton.addEventListener("click", () => {
+    addCardModal.open();
+});
+
+const editProfileModal = new PopupWithForm(
+    "#profile-edit-modal",
+    (formData) => {
+        profileTitle.textContent = formData.name;
+        profileDescription.textContent = formData.about;
+        editProfileModal.close();
+    }
+);
+editProfileModal.setEventListeners();
+
+profileEditButton.addEventListener("click", () => {
+    editProfileModal.open();
+});
 
 const addCardFormValidator = new FormValidator(settings, addCardForm);
 addCardFormValidator.enableValidation();
