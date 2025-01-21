@@ -36,13 +36,11 @@ import {
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
-    open(profileEditModal);
 });
 
 addCardButton.addEventListener("click", () => {
     addCardTitleInput.value = addCardTitle.textContent;
     addCardURLInput.value = addCardURL.textContent;
-    open(addCardModal);
 });
 
 const imagePopup = new PopupWithImages("#card-image-modal");
