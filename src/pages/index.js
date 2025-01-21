@@ -33,13 +33,6 @@ import {
     imageModalCloseButton,
 } from "../utils/constants.js";
 
-function handleImageClick(name, link) {
-    imageModalImg.src = link;
-    imageModalImg.alt = name;
-    imageModalText.textContent = name;
-    open(imageModal);
-}
-
 profileEditButton.addEventListener("click", () => {
     profileTitleInput.value = profileTitle.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
@@ -51,6 +44,11 @@ addCardButton.addEventListener("click", () => {
     addCardURLInput.value = addCardURL.textContent;
     open(addCardModal);
 });
+
+function handleImageClick(name, link) {
+    const cardData = { name, link };
+    imagePopup.open(cardData);
+}
 
 function createCard(cardData) {
     const card = new Card(cardData, "#card-template", handleImageClick);
@@ -95,3 +93,6 @@ addCardFormValidator.enableValidation();
 
 const editProfileFormValidator = new FormValidator(settings, profileEditForm);
 editProfileFormValidator.enableValidation();
+
+const imagePopup = new PopupWithImages(imageModal, cardData);
+imagePopup.open();

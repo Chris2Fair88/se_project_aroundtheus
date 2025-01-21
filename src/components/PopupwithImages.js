@@ -1,3 +1,5 @@
+import Popup from "./Popup.js";
+
 export default class PopupWithImages extends Popup {
     constructor(modalSelector) {
         super(modalSelector);
@@ -5,7 +7,7 @@ export default class PopupWithImages extends Popup {
         this._modalTitle = this._modal.querySelector(".modal__title");
     }
 
-    open(data) {
+    open(cardData) {
         this._modalImage.src = data.link;
         this._modalImage.alt = data.name;
         this._modalTitle.textContent = data.name;
