@@ -45,10 +45,14 @@ addCardButton.addEventListener("click", () => {
     open(addCardModal);
 });
 
+const imagePopup = new PopupWithImages("#card-image-modal");
+
 function handleImageClick(name, link) {
     const cardData = { name, link };
     imagePopup.open(cardData);
 }
+
+imagePopup.setEventListeners();
 
 function createCard(cardData) {
     const card = new Card(cardData, "#card-template", handleImageClick);
@@ -93,6 +97,3 @@ addCardFormValidator.enableValidation();
 
 const editProfileFormValidator = new FormValidator(settings, profileEditForm);
 editProfileFormValidator.enableValidation();
-
-const imagePopup = new PopupWithImages(imageModal, cardData);
-imagePopup.open();

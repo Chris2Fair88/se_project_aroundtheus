@@ -18,17 +18,17 @@ export default class Popup {
         );
     }
 
-    _handleEscClose(e) {
+    _handleEscClose = (e) => {
         if (e.key === "Escape") {
             this.close();
         }
-    }
+    };
 
-    _handleCloseOverlay(e) {
+    _handleCloseOverlay = (e) => {
         if (e.target.classList.contains("modal_opened")) {
-            this.close(e.target);
+            this.close();
         }
-    }
+    };
 
     setEventListeners() {
         this._modalElement
