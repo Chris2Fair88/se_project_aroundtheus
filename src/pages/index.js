@@ -80,8 +80,8 @@ addCardButton.addEventListener("click", () => {
 const editProfileModal = new PopupWithForm(
     "#profile-edit-modal",
     (formData) => {
-        profileTitle.textContent = formData.name;
-        profileDescription.textContent = formData.about;
+        profileTitle.textContent = formData.title;
+        profileDescription.textContent = formData.description;
         editProfileModal.close();
     }
 );
