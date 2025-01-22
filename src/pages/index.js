@@ -65,8 +65,9 @@ function renderCard(cardData, cardListEl) {
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
-    const card = new Card(formData, "#card-template");
-    const cardElement = card.createCard();
+    const newData = { name: formData.title, link: formData.url };
+    const card = new Card(newData, "#card-template");
+    const cardElement = card.getView();
     document.querySelector(".cards__list").prepend(cardElement);
     addCardPopup.close();
 });
