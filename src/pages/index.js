@@ -62,7 +62,8 @@ function renderCard(data) {
         {
             items: initialCards,
             renderer: (data) => {
-                cardList.addItem(createCard(data));
+                console.log(data);
+                section.addItem(createCard(data));
             },
         },
         ".cards__list"
