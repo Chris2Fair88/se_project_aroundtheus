@@ -57,21 +57,20 @@ function createCard(cardData) {
     return card.getView();
 }
 
-function renderCard(cardData, cardListEl) {
-    const cardElement = createCard(cardData);
-    cardListEl.prepend(cardElement);
+function renderCard(data) {
+    const section = new Section();
+    const card = createCard(data);
+    section.addItem(card);
 }
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
-    const card = new Card(newData, "#card-template");
-    const cardElement = card.getView();
-    document.querySelector(".cards__list").prepend(cardElement);
+    renderCard(newData, cardListEl);
     addCardPopup.close();
+    addCardPopup.setEventListeners();
 });
-addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
     addCardPopup.open();
@@ -80,8 +79,10 @@ addCardButton.addEventListener("click", () => {
 const editProfileModal = new PopupWithForm(
     "#profile-edit-modal",
     (formData) => {
-        profileTitle.textContent = formData.title;
-        profileDescription.textContent = formData.description;
+        UserInfo.setUserInfo({
+            name: formData.title,
+            job: formData.description,
+        });
         editProfileModal.close();
     }
 );
