@@ -78,8 +78,9 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
     renderCard(newData, cardListEl);
     addCardPopup.close();
-    addCardPopup.setEventListeners();
 });
+
+addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
     addCardPopup.open();
