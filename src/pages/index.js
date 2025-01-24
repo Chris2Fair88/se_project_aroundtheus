@@ -89,9 +89,13 @@ addCardButton.addEventListener("click", () => {
 const editProfileModal = new PopupWithForm(
     "#profile-edit-modal",
     (formData) => {
-        UserInfo.setUserInfo({
+        const userInfo = new UserInfo(
+            ".profile__title",
+            ".profile__description"
+        );
+        userInfo.setUserInfo({
             name: formData.title,
-            job: formData.description,
+            description: formData.description,
         });
         editProfileModal.close();
     }
