@@ -86,13 +86,11 @@ addCardButton.addEventListener("click", () => {
     addCardPopup.open();
 });
 
+const userInfo = new UserInfo(".profile__title", ".profile__description");
+
 const editProfileModal = new PopupWithForm(
     "#profile-edit-modal",
     (formData) => {
-        const userInfo = new UserInfo(
-            ".profile__title",
-            ".profile__description"
-        );
         userInfo.setUserInfo({
             name: formData.title,
             description: formData.description,

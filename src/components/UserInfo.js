@@ -1,4 +1,4 @@
-class UserInfo {
+export default class UserInfo {
     constructor(nameSelector, descriptionSelector) {
         this._nameElement = document.querySelector(nameSelector);
         this._descriptionElement = document.querySelector(descriptionSelector);
@@ -12,7 +12,7 @@ class UserInfo {
     }
 
     setUserInfo({ name, description }) {
-        this._name.textContent = name;
-        this._description.textContent = description;
+        this._nameElement = name;
+        this._descriptionElement = description;
     }
 }
