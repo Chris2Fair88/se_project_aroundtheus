@@ -38,11 +38,6 @@ profileEditButton.addEventListener("click", () => {
     profileDescriptionInput.value = profileDescription.textContent;
 });
 
-addCardButton.addEventListener("click", () => {
-    addCardTitleInput.value = addCardTitle.textContent;
-    addCardURLInput.value = addCardURL.textContent;
-});
-
 const imagePopup = new PopupWithImages("#card-image-modal");
 
 function handleImageClick(name, link) {
