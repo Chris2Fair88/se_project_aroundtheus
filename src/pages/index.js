@@ -75,6 +75,7 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     addCardPopup.reset();
 });
 
+addCardPopup.reset();
 addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
