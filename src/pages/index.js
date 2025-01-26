@@ -34,8 +34,9 @@ import {
 } from "../utils/constants.js";
 
 profileEditButton.addEventListener("click", () => {
-    profileTitleInput.value = profileTitle.textContent;
-    profileDescriptionInput.value = profileDescription.textContent;
+    const userData = userInfo.getUserInfo();
+    profileTitleInput.value = userData.name;
+    profileDescriptionInput.value = userData.job;
 });
 
 const imagePopup = new PopupWithImages("#card-image-modal");
@@ -51,28 +52,27 @@ function createCard(cardData) {
     const card = new Card(cardData, "#card-template", handleImageClick);
     return card.getView();
 }
+const section = new Section(
+    {
+        items: initialCards,
+        renderer: renderCard,
+    },
+
+    ".cards__list"
+);
 
 function renderCard(data) {
-    const section = new Section(
-        {
-            items: initialCards,
-            renderer: (data) => {
-                console.log(data);
-                section.addItem(createCard(data));
-            },
-        },
-        ".cards__list"
-    );
     const card = createCard(data);
     section.addItem(card);
 }
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+section.renderItems();
 
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
     renderCard(newData, cardListEl);
     addCardPopup.close();
+    addCardPopup.reset();
 });
 
 addCardPopup.setEventListeners();
@@ -91,6 +91,7 @@ const editProfileModal = new PopupWithForm(
             description: formData.description,
         });
         editProfileModal.close();
+        editProfileModal.reset();
     }
 );
 editProfileModal.setEventListeners();
