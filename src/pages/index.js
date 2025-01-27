@@ -33,13 +33,14 @@ import {
     imageModalCloseButton,
 } from "../utils/constants.js";
 
+const userInfo = new UserInfo(".profile__title", ".profile__description");
+const imagePopup = new PopupWithImages("#card-image-modal");
+
 profileEditButton.addEventListener("click", () => {
     const userData = userInfo.getUserInfo();
     profileTitleInput.value = userData.name;
     profileDescriptionInput.value = userData.job;
 });
-
-const imagePopup = new PopupWithImages("#card-image-modal");
 
 function handleImageClick(name, link) {
     const cardData = { name, link };
@@ -72,17 +73,15 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
     renderCard(newData, cardListEl);
     addCardPopup.close();
-    addCardPopup.reset();
+    addCardForm.reset();
 });
 
-addCardPopup.reset();
 addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
     addCardPopup.open();
+    addCardForm.reset();
 });
-
-const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const editProfileModal = new PopupWithForm(
     "#profile-edit-modal",
@@ -92,7 +91,7 @@ const editProfileModal = new PopupWithForm(
             description: formData.description,
         });
         editProfileModal.close();
-        editProfileModal.reset();
+        profileEditForm.reset();
     }
 );
 editProfileModal.setEventListeners();
