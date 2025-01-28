@@ -74,13 +74,14 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     renderCard(newData, cardListEl);
     addCardPopup.close();
     addCardForm.reset();
+
+    addCardFormValidator.disableButton();
 });
 
 addCardPopup.setEventListeners();
 
 addCardButton.addEventListener("click", () => {
     addCardPopup.open();
-    addCardForm.reset();
 });
 
 const editProfileModal = new PopupWithForm(
