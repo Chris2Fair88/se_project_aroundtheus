@@ -6,6 +6,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import Popup from "../components/Popup.js";
 import Section from "../components/Section.js";
 import PopupWithImages from "../components/PopupWithImages.js";
+import Api from "../components/API.js";
 
 import {
     settings,
@@ -53,6 +54,7 @@ function createCard(cardData) {
     const card = new Card(cardData, "#card-template", handleImageClick);
     return card.getView();
 }
+
 const section = new Section(
     {
         items: initialCards,
@@ -68,6 +70,12 @@ function renderCard(data) {
 }
 
 section.renderItems();
+
+api.getInitialCards()
+    .then((result) => {})
+    .catch((err) => {
+        console.error(err);
+    });
 
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
