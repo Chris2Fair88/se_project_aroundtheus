@@ -76,8 +76,14 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     renderCard(newData, cardListEl);
     addCardPopup.close();
     addCardForm.reset();
-
     addCardFormValidator.disableButton();
+    api.createNewCard()
+        .then((result) => {
+            renderCard(result);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 });
 
 addCardPopup.setEventListeners();
@@ -95,6 +101,12 @@ const editProfileModal = new PopupWithForm(
         });
         editProfileModal.close();
         profileEditForm.reset();
+        api.setProfileInfo(name, about).then((result) => {
+            userInfo.setUserInfo({
+                name: result.name,
+                description: result.about,
+            });
+        });
     }
 );
 editProfileModal.setEventListeners();
@@ -118,7 +130,20 @@ const api = new Api({
 });
 
 api.getInitialCards()
-    .then((result) => {})
+    .then((result) => {
+        renderItems(result);
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+
+api.getUserInfo()
+    .then((result) => {
+        userInfo.setUserInfo({
+            name: result.name,
+            description: result.about,
+        });
+    })
     .catch((err) => {
         console.error(err);
     });

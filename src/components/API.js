@@ -15,7 +15,7 @@ export default class Api {
         });
     }
 
-    getNewCard(data) {
+    createNewCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
             headers: this._headers,
@@ -43,7 +43,7 @@ export default class Api {
         });
     }
 
-    getProfileInfo() {
+    setProfileInfo({ name, about }) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
             headers: this._headers,
