@@ -15,7 +15,7 @@ export default class Api {
         });
     }
 
-    createNewCard(data) {
+    createNewCard() {
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
             headers: this._headers,

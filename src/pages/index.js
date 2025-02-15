@@ -69,8 +69,6 @@ function renderCard(data) {
     section.addItem(card);
 }
 
-section.renderItems();
-
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
     renderCard(newData, cardListEl);
@@ -131,7 +129,7 @@ const api = new Api({
 
 api.getInitialCards()
     .then((result) => {
-        renderItems(result);
+        section.renderItems(result);
     })
     .catch((err) => {
         console.error(err);
@@ -143,6 +141,7 @@ api.getUserInfo()
             name: result.name,
             description: result.about,
         });
+        userInfo.setAvatar(result.avatar);
     })
     .catch((err) => {
         console.error(err);
