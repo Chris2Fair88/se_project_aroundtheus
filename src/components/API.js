@@ -5,10 +5,24 @@ export default class Api {
     }
 
     getInitialCards() {
-        return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-            headers: {
-                authorization: "34309ff6-916f-42f6-9f50-594fbb533e2c",
-            },
+        return fetch(`${this._baseUrl}/cards`, {
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        });
+    }
+
+    getNewCard(data) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                link: data.link,
+            }),
         }).then((res) => {
             if (res.ok) {
                 return res.json();
@@ -18,21 +32,26 @@ export default class Api {
     }
 
     getUserInfo() {
-        return fetch(
-            "https://around-api.en.tripleten-services.com/v1/users/me",
-            {
-                method: "GET",
-                headers: {
-                    authorization: "34309ff6-916f-42f6-9f50-594fbb533e2c",
-                },
-                {
-              "about": 
-              "avatar":
-              "name":
-                "_id":
-                }
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "GET",
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
             }
-        ).then((res) => {
+            return Promise.reject(`Error: ${res.status}`);
+        });
+    }
+
+    getProfileInfo() {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                about: about,
+            }),
+        }).then((res) => {
             if (res.ok) {
                 return res.json();
             }
@@ -44,11 +63,3 @@ export default class Api {
         return Promise.all([this.getUserInfo(), this.getInitialCards()]);
     }
 }
-
-const api = new Api({
-    baseUrl: "https://around-api.en.tripleten-services.com/v1",
-    headers: {
-        authorization: "34309ff6-916f-42f6-9f50-594fbb533e2c",
-        "Content-Type": "application/json",
-    },
-});

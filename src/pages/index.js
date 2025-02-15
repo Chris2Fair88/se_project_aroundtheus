@@ -71,12 +71,6 @@ function renderCard(data) {
 
 section.renderItems();
 
-api.getInitialCards()
-    .then((result) => {})
-    .catch((err) => {
-        console.error(err);
-    });
-
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
     renderCard(newData, cardListEl);
@@ -114,3 +108,17 @@ addCardFormValidator.enableValidation();
 
 const editProfileFormValidator = new FormValidator(settings, profileEditForm);
 editProfileFormValidator.enableValidation();
+
+const api = new Api({
+    baseUrl: "https://around-api.en.tripleten-services.com/v1",
+    headers: {
+        authorization: "34309ff6-916f-42f6-9f50-594fbb533e2c",
+        "Content-Type": "application/json",
+    },
+});
+
+api.getInitialCards()
+    .then((result) => {})
+    .catch((err) => {
+        console.error(err);
+    });
