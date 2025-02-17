@@ -53,9 +53,22 @@ function handleImageClick(name, link) {
     imagePopup.open(cardData);
 }
 
-function handleDeleteClick(cardId) {
-    deleteCardPopup.cardId = cardId;
+function handleDeleteCard(cardId) {
     deleteCardPopup.open();
+    deleteCardPopup.setSubmitAction(() => {
+        deleteCardPopup(cardId);
+        deleteCardPopup.close();
+    });
+}
+
+function getCardElement(cardData) {
+    const card = new Card(
+        cardData,
+        "#card-template",
+        handleImageClick,
+        handleDeleteCard
+    );
+    return card.getView();
 }
 
 imagePopup.setEventListeners();
@@ -118,18 +131,8 @@ const editProfileModal = new PopupWithForm(
     }
 );
 
-const deleteCardPopup = new PopupWithConfirm("#delete-card-modal", () => {
-    api.deleteCard(deleteCardPopup.cardId)
-        .then(() => {
-            document
-                .querySelector(`[data-id="${deleteCardPopup.cardId}"]`)
-                .remove();
-            deleteCardPopup.close();
-        })
-        .catch((err) => {
-            console.error(`Error: ${err}`);
-        });
-});
+const deleteCardPopup = new PopupWithConfirm("#delete-card-modal");
+
 deleteCardPopup.setEventListeners();
 
 editProfileModal.setEventListeners();

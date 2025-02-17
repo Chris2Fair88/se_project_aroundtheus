@@ -3,13 +3,13 @@ export default class Card {
         { name, link },
         cardSelector,
         handleImageClick,
-        handleDeleteClick
+        handleDeleteCard
     ) {
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
         this._handleImageClick = handleImageClick;
-        this._handleDeleteClick = handleDeleteClick;
+        this._handleDeleteCard = handleDeleteCard;
     }
 
     _setEventListeners() {
