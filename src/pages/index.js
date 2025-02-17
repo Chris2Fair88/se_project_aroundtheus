@@ -6,6 +6,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import Popup from "../components/Popup.js";
 import Section from "../components/Section.js";
 import PopupWithImages from "../components/PopupWithImages.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import Api from "../components/API.js";
 
 import {
@@ -34,7 +35,11 @@ import {
     imageModalCloseButton,
 } from "../utils/constants.js";
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+const userInfo = new UserInfo(
+    ".profile__title",
+    ".profile__description",
+    ".profile__image"
+);
 const imagePopup = new PopupWithImages("#card-image-modal");
 
 profileEditButton.addEventListener("click", () => {
@@ -46,6 +51,11 @@ profileEditButton.addEventListener("click", () => {
 function handleImageClick(name, link) {
     const cardData = { name, link };
     imagePopup.open(cardData);
+}
+
+function handleDeleteClick(cardId) {
+    deleteCardPopup.cardId = cardId;
+    deleteCardPopup.open();
 }
 
 imagePopup.setEventListeners();
@@ -107,6 +117,21 @@ const editProfileModal = new PopupWithForm(
         });
     }
 );
+
+const deleteCardPopup = new PopupWithConfirm("#delete-card-modal", () => {
+    api.deleteCard(deleteCardPopup.cardId)
+        .then(() => {
+            document
+                .querySelector(`[data-id="${deleteCardPopup.cardId}"]`)
+                .remove();
+            deleteCardPopup.close();
+        })
+        .catch((err) => {
+            console.error(`Error: ${err}`);
+        });
+});
+deleteCardPopup.setEventListeners();
+
 editProfileModal.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
