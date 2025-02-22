@@ -179,3 +179,16 @@ api.getUserInfo()
     .catch((err) => {
         console.error(err);
     });
+
+cardInfoSubmit.setSubmitAction(() => {
+    api.removeCard(card.getId())
+        .then(() => {
+            card.removeCard();
+            cardInfoSubmit.close();
+        })
+        .catch((err) => {
+            console.error(
+                "An error occurred while trying to delete the card: ${err}"
+            );
+        });
+});

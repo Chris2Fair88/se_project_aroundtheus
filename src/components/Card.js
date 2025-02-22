@@ -5,12 +5,12 @@ export default class Card {
         handleImageClick,
         handleDeleteCard
     ) {
-        this._id = _id;
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
         this._handleImageClick = handleImageClick;
         this._handleDeleteCard = handleDeleteCard;
+        this._cardId = _id;
     }
 
     _setEventListeners() {
