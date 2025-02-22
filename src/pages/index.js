@@ -74,7 +74,12 @@ function getCardElement(cardData) {
 imagePopup.setEventListeners();
 
 function createCard(cardData) {
-    const card = new Card(cardData, "#card-template", handleImageClick);
+    const card = new Card(
+        cardData,
+        "#card-template",
+        handleImageClick,
+        handleDeleteCard
+    );
     return card.getView();
 }
 
