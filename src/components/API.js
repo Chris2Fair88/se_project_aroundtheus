@@ -74,8 +74,4 @@ export default class Api {
     getAppInfo() {
         return Promise.all([this.getUserInfo(), this.getInitialCards()]);
     }
-
-    getId() {
-        return this._cardId;
-    }
 }

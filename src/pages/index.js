@@ -53,11 +53,19 @@ function handleImageClick(name, link) {
     imagePopup.open(cardData);
 }
 
-function handleDeleteCard(cardId) {
+function handleDeleteCard(card) {
     deleteCardPopup.open();
-    deleteCardPopup.setSubmitAction(() => {
-        deleteCardPopup(cardId);
-        deleteCardPopup.close();
+    deleteCardPopup.setSubmitFunc(() => {
+        api.removeCard(card.getId())
+            .then(() => {
+                card.removeCard();
+                deleteCardPopup.close();
+            })
+            .catch((err) => {
+                console.error(
+                    "An error occurred while trying to delete the card: ${err}"
+                );
+            });
     });
 }
 
@@ -81,6 +89,19 @@ function createCard(cardData) {
         handleDeleteCard
     );
     return card.getView();
+}
+
+function cardInfoSubmit(cardId) {
+    deleteCardPopup.setSubmitFunc(() => {
+        api.removeCard(cardId)
+            .then(() => {
+                card.removeCard();
+                deleteCardPopup.close();
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    });
 }
 
 const section = new Section(
@@ -179,16 +200,3 @@ api.getUserInfo()
     .catch((err) => {
         console.error(err);
     });
-
-cardInfoSubmit.setSubmitAction(() => {
-    api.removeCard(card.getId())
-        .then(() => {
-            card.removeCard();
-            cardInfoSubmit.close();
-        })
-        .catch((err) => {
-            console.error(
-                "An error occurred while trying to delete the card: ${err}"
-            );
-        });
-});

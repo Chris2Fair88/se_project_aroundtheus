@@ -6,15 +6,19 @@ export default class PopupWithConfirm extends Popup {
         this._modalForm = this._modalElement.querySelector(".modal__form");
     }
 
-    setSubmitFunc(submitFunc) {
-        this._submitFunc = submitFunc;
+    setSubmitFunc(SubmitFunc) {
+        this._SubmitFunc = SubmitFunc;
+    }
+
+    getId() {
+        return this._cardId;
     }
 
     setEventListeners() {
         super.setEventListeners();
         this._modalForm.addEventListener("submit", (evt) => {
             evt.preventDefault();
-            this._submitFunc();
+            this._SubmitFunc();
         });
     }
 }
