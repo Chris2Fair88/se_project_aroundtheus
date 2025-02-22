@@ -10,10 +10,6 @@ export default class PopupWithConfirm extends Popup {
         this._SubmitFunc = SubmitFunc;
     }
 
-    getId() {
-        return this._cardId;
-    }
-
     setEventListeners() {
         super.setEventListeners();
         this._modalForm.addEventListener("submit", (evt) => {

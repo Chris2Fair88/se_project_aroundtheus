@@ -24,7 +24,7 @@ export default class Card {
         this._cardElement
             .querySelector(".cards__delete-button")
             .addEventListener("click", () => {
-                this._handleDeleteCard(this._id);
+                this._handleDeleteCard(this);
             });
 
         this._cardImageEl.addEventListener("click", () =>
@@ -45,5 +45,9 @@ export default class Card {
         this._cardtitleEl.textContent = this._name;
         this._setEventListeners();
         return this._cardElement;
+    }
+
+    getId() {
+        return this._cardId;
     }
 }

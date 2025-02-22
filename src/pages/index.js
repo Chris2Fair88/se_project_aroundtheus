@@ -56,9 +56,9 @@ function handleImageClick(name, link) {
 function handleDeleteCard(card) {
     deleteCardPopup.open();
     deleteCardPopup.setSubmitFunc(() => {
-        api.removeCard(card.getId())
+        api.deleteCard(card.getId())
             .then(() => {
-                card.removeCard();
+                card.deleteCard();
                 deleteCardPopup.close();
             })
             .catch((err) => {
@@ -93,9 +93,9 @@ function createCard(cardData) {
 
 function cardInfoSubmit(cardId) {
     deleteCardPopup.setSubmitFunc(() => {
-        api.removeCard(cardId)
+        api.deleteCard(cardId)
             .then(() => {
-                card.removeCard();
+                card.deleteCard();
                 deleteCardPopup.close();
             })
             .catch((err) => {
