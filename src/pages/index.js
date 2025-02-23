@@ -61,7 +61,7 @@ function handleDeleteCard(card) {
                 card.deleteCard();
                 deleteCardPopup.close();
             })
-            .catch((err) => {
+            .catch((error) => {
                 console.error(
                     "An error occurred while trying to delete the card: ${err}"
                 );
@@ -120,13 +120,12 @@ function renderCard(data) {
 
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
     const newData = { name: formData.title, link: formData.url };
-    renderCard(newData, cardListEl);
-    addCardPopup.close();
-    addCardForm.reset();
-    addCardFormValidator.disableButton();
-    api.createNewCard()
+    api.createNewCard(newData)
         .then((result) => {
             renderCard(result);
+            addCardPopup.close();
+            addCardForm.reset();
+            addCardFormValidator.disableButton();
         })
         .catch((err) => {
             console.error(err);
