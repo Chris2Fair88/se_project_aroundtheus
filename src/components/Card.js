@@ -3,14 +3,17 @@ export default class Card {
         { name, link, _id },
         cardSelector,
         handleImageClick,
-        handleDeleteCard
+        handleDeleteCard,
+        handleLikeClick
     ) {
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
         this._handleImageClick = handleImageClick;
         this._handleDeleteCard = handleDeleteCard;
+        this._handleLikeClick = handleLikeClick;
         this._cardId = _id;
+        this._likeButton = null;
     }
 
     _setEventListeners() {
@@ -19,6 +22,7 @@ export default class Card {
 
         this._likeButton.addEventListener("click", () => {
             this._likeButton.classList.toggle("card__like-button_active");
+            this._handleLikeClick(this);
         });
 
         this._cardElement

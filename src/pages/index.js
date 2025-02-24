@@ -104,6 +104,26 @@ function cardInfoSubmit(cardId) {
     });
 }
 
+function handleLikeClick(card) {
+    if (card.isLiked()) {
+        api.addLike(card.getId())
+            .then((result) => {
+                card.like(result.likes.length);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    } else {
+        api.deleteLike(card.getId())
+            .then((result) => {
+                card.like(result.likes.length);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+}
+
 const section = new Section(
     {
         items: initialCards,
@@ -195,22 +215,6 @@ api.getUserInfo()
             description: result.about,
         });
         userInfo.setAvatar(result.avatar);
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-
-api.addLike(cardId)
-    .then((result) => {
-        card.like(result.likes.length);
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-
-api.deleteLike(cardId)
-    .then((result) => {
-        card.like(result.likes.length);
     })
     .catch((err) => {
         console.error(err);
