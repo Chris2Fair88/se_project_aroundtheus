@@ -199,3 +199,19 @@ api.getUserInfo()
     .catch((err) => {
         console.error(err);
     });
+
+api.addLike(cardId)
+    .then((result) => {
+        card.like(result.likes.length);
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+
+api.deleteLike(cardId)
+    .then((result) => {
+        card.like(result.likes.length);
+    })
+    .catch((err) => {
+        console.error(err);
+    });

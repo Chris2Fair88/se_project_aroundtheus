@@ -50,4 +50,8 @@ export default class Card {
     getId() {
         return this._cardId;
     }
+
+    deleteCard() {
+        this._cardElement.remove();
+    }
 }
