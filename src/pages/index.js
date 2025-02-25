@@ -86,7 +86,8 @@ function createCard(cardData) {
         cardData,
         "#card-template",
         handleImageClick,
-        handleDeleteCard
+        handleDeleteCard,
+        handleLikeClick
     );
     return card.getView();
 }
@@ -105,19 +106,15 @@ function cardInfoSubmit(cardId) {
 }
 
 function handleLikeClick(card) {
-    if (card.isLiked()) {
-        api.addLike(card.getId())
-            .then((result) => {
-                card.like(result.likes.length);
-            })
+    if (isLiked === true) {
+        api.addLike(card.isLiked())
+            .then((result) => {})
             .catch((err) => {
                 console.error(err);
             });
     } else {
-        api.deleteLike(card.getId())
-            .then((result) => {
-                card.like(result.likes.length);
-            })
+        api.deleteLike(card.isLiked())
+            .then((result) => {})
             .catch((err) => {
                 console.error(err);
             });

@@ -1,6 +1,6 @@
 export default class Card {
     constructor(
-        { name, link, _id },
+        { name, link, _id, isLiked },
         cardSelector,
         handleImageClick,
         handleDeleteCard,
@@ -14,6 +14,7 @@ export default class Card {
         this._handleLikeClick = handleLikeClick;
         this._cardId = _id;
         this._likeButton = null;
+        this._isLiked = isLiked;
     }
 
     _setEventListeners() {
@@ -57,5 +58,9 @@ export default class Card {
 
     deleteCard() {
         this._cardElement.remove();
+    }
+
+    isLiked() {
+        return this._isLiked;
     }
 }
