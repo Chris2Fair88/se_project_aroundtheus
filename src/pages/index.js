@@ -106,19 +106,24 @@ function cardInfoSubmit(cardId) {
 }
 
 function handleLikeClick(card) {
-    if (isLiked === true) {
-        api.addLike(card.isLiked())
+    if (card.isLiked() === true) {
+        api.addLike(card.getId())
             .then((result) => {})
             .catch((err) => {
                 console.error(err);
             });
     } else {
-        api.deleteLike(card.isLiked())
+        api.deleteLike(card.getId())
             .then((result) => {})
             .catch((err) => {
                 console.error(err);
             });
     }
+}
+
+function handleAvatarClick() {
+    const avatar = userInfo.getAvatar();
+    imagePopup.open({ name: "Avatar", link: avatar });
 }
 
 const section = new Section(
