@@ -221,3 +221,21 @@ api.getUserInfo()
     .catch((err) => {
         console.error(err);
     });
+
+const avatarEditButton = document.querySelector(".profile__image");
+
+const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
+    api.setAvatar(formData.avatar)
+        .then((result) => {
+            userInfo.setAvatar(result.avatar);
+            avatarEditModal.close();
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    avatarEditModal.setEventListeners();
+});
+
+avatarEditButton.addEventListener("click", () => {
+    avatarEditModal.open();
+});

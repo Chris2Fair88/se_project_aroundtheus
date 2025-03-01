@@ -42,6 +42,29 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2024 Around the U.S.</p>
         </footer>
+
+        //*avatar-edit-modal*//
+        <div class="modal" id="avatar-edit-modal">
+            <div class="modal__container">
+                <button class="modal__close" id="avatar-modal-close-button" type="button"></button>
+                <h2 class="modal__heading">Change profile picture</h2>
+                <form class="modal__form" id="avatar-form">
+                    <label class="modal__label">
+                        <input
+                            class="modal__input"
+                            type="url"
+                            name="avatar"
+                            id="avatar-url-input"
+                            placeholder="Image URL"
+                            required
+                        />
+                        <span class="modal__error" id="avatar-url-input-error"></span>
+                    </label>
+                    <button class="modal__button" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+
         //* profile edit modal*//
 
         <div class="modal" id="profile-edit-modal">
