@@ -137,6 +137,7 @@ function renderCard(data) {
 }
 
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
+    addCardPopup.setLoading(true);
     const newData = { name: formData.title, link: formData.url };
     api.createNewCard(newData)
         .then((result) => {
@@ -147,6 +148,9 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
         })
         .catch((err) => {
             console.error(err);
+        })
+        .finally(() => {
+            addCardPopup.setLoading(false);
         });
 });
 
@@ -159,18 +163,22 @@ addCardButton.addEventListener("click", () => {
 const editProfileModal = new PopupWithForm(
     "#profile-edit-modal",
     (formData) => {
-        userInfo.setUserInfo({
+        editProfileModal.setLoading(true);
+        api.setProfileInfo({
             name: formData.title,
-            description: formData.description,
-        });
-        editProfileModal.close();
-        profileEditForm.reset();
-        api.setProfileInfo(name, about).then((result) => {
-            userInfo.setUserInfo({
-                name: result.name,
-                description: result.about,
+            about: formData.description,
+        })
+            .then((result) => {
+                userInfo.setUserInfo({
+                    name: result.name,
+                    description: result.about,
+                });
+                profileEditForm.reset();
+                editProfileModal.close();
+            })
+            .finally(() => {
+                editProfileModal.setLoading(false);
             });
-        });
     }
 );
 
@@ -219,6 +227,7 @@ api.getUserInfo()
     });
 
 const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
+    avatarEditModal.setLoading(true);
     api.setAvatar(formData.avatar)
         .then((result) => {
             userInfo.setAvatar(result.avatar);
@@ -226,6 +235,9 @@ const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
         })
         .catch((err) => {
             console.error(err);
+        })
+        .finally(() => {
+            avatarEditModal.setLoading(false);
         });
 });
 
