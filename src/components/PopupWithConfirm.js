@@ -4,6 +4,8 @@ export default class PopupWithConfirm extends Popup {
     constructor(modalSelector) {
         super({ modalSelector });
         this._modalForm = this._modalElement.querySelector(".modal__form");
+        this._submitButton = this._modalForm.querySelector(".modal__button");
+        this._submitButtonTextContent = this._submitButton.textContent;
     }
 
     setSubmitFunc(SubmitFunc) {
@@ -16,5 +18,13 @@ export default class PopupWithConfirm extends Popup {
             evt.preventDefault();
             this._SubmitFunc();
         });
+    }
+
+    setLoading(isLoading, loadingText = "Saving...") {
+        if (isLoading) {
+            this._submitButton.textContent = loadingText;
+        } else {
+            this._submitButton.textContent = this._submitButtonTextContent;
+        }
     }
 }

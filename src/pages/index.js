@@ -137,8 +137,6 @@ function renderCard(data) {
 }
 
 const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
-    const submitButton = addCardPopup._form.querySelector(".modal__button");
-    submitButton.textContent = "Saving...";
     const newData = { name: formData.title, link: formData.url };
     api.createNewCard(newData)
         .then((result) => {
@@ -149,9 +147,6 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
         })
         .catch((err) => {
             console.error(err);
-        })
-        .finally(() => {
-            submitButton.textContent = "Save";
         });
 });
 
@@ -164,9 +159,6 @@ addCardButton.addEventListener("click", () => {
 const editProfileModal = new PopupWithForm(
     "#profile-edit-modal",
     (formData) => {
-        const submitButton =
-            editProfileModal._form.querySelector(".modal__button");
-        submitButton.textContent = "Saving...";
         userInfo.setUserInfo({
             name: formData.title,
             description: formData.description,
@@ -174,17 +166,10 @@ const editProfileModal = new PopupWithForm(
         editProfileModal.close();
         profileEditForm.reset();
         api.setProfileInfo(name, about).then((result) => {
-            userInfo
-                .setUserInfo({
-                    name: result.name,
-                    description: result.about,
-                })
-                .catch((err) => {
-                    console.error(err);
-                })
-                .finally(() => {
-                    submitButton.textContent = "Save";
-                });
+            userInfo.setUserInfo({
+                name: result.name,
+                description: result.about,
+            });
         });
     }
 );
@@ -234,8 +219,6 @@ api.getUserInfo()
     });
 
 const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
-    const submitButton = avatarEditModal._form.querySelector(".modal__button");
-    submitButton.textContent = "Saving...";
     api.setAvatar(formData.avatar)
         .then((result) => {
             userInfo.setAvatar(result.avatar);
@@ -243,9 +226,6 @@ const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
         })
         .catch((err) => {
             console.error(err);
-        })
-        .finally(() => {
-            submitButton.textContent = "Save";
         });
 });
 
