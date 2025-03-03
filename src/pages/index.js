@@ -62,12 +62,6 @@ function handleDeleteCard(card) {
                 card.deleteCard();
                 deleteCardPopup.close();
             })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Error: ${res.status}`);
-            })
             .catch((error) => {
                 console.error(
                     "An error occurred while trying to delete the card: ${err}"
@@ -134,12 +128,6 @@ function handleLikeClick(card) {
     } else {
         api.deleteLike(card.getId())
             .then((result) => {})
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Error: ${res.status}`);
-            })
             .catch((err) => {
                 console.error(err);
             });
@@ -170,12 +158,6 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (formData) => {
             addCardForm.reset();
             addCardFormValidator.disableButton();
         })
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        })
         .catch((err) => {
             console.error(err);
         })
@@ -205,12 +187,6 @@ const editProfileModal = new PopupWithForm(
                 });
                 profileEditForm.reset();
                 editProfileModal.close();
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Error: ${res.status}`);
             })
             .finally(() => {
                 editProfileModal.setLoading(false);
@@ -246,12 +222,6 @@ api.getInitialCards()
     .then((result) => {
         section.renderItems(result);
     })
-    .then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-    })
     .catch((err) => {
         console.error(err);
     });
@@ -274,12 +244,6 @@ const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
         .then((result) => {
             userInfo.setAvatar(result.avatar);
             avatarEditModal.close();
-        })
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
         })
         .catch((err) => {
             console.error(err);
