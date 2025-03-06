@@ -2,17 +2,14 @@ import "../pages/index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import Popup from "../components/Popup.js";
 import Section from "../components/Section.js";
-import PopupWithImages from "../components/PopupWithImages.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js";
-import Api from "../components/API.js";
-
+import Api from "../components/Api.js";
 import {
     settings,
     initialCards,
-    avatarEditButton,
     profileEditButton,
     profileEditModal,
     profileModalCloseButton,
@@ -34,6 +31,7 @@ import {
     imageModalImg,
     imageModalText,
     imageModalCloseButton,
+    avatarEditButton,
 } from "../utils/constants.js";
 
 const userInfo = new UserInfo(
@@ -41,7 +39,7 @@ const userInfo = new UserInfo(
     ".profile__description",
     ".profile__image"
 );
-const imagePopup = new PopupWithImages("#card-image-modal");
+const imagePopup = new PopupWithImage("#card-image-modal");
 
 profileEditButton.addEventListener("click", () => {
     const userData = userInfo.getUserInfo();
@@ -84,7 +82,13 @@ imagePopup.setEventListeners();
 
 function createCard(cardData) {
     const card = new Card(
-        cardData,
+        {
+            name: cardData.name,
+            link: cardData.link,
+            _id: cardData._id,
+            isLiked: cardData.isLiked,
+            likes: cardData.likes,
+        },
         "#card-template",
         handleImageClick,
         handleDeleteCard,
@@ -113,25 +117,17 @@ function cardInfoSubmit(cardId) {
 }
 
 function handleLikeClick(card) {
-    if (card.isLiked() === true) {
-        api.addLike(card.getId())
-            .then((result) => {})
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Error: ${res.status}`);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    } else {
-        api.deleteLike(card.getId())
-            .then((result) => {})
-            .catch((err) => {
-                console.error(err);
-            });
-    }
+    const isLiked = card.isLiked();
+    api.changeCardLikeStatus(card.getId(), isLiked)
+        .then((updatedCard) => {
+            card.setLikes(updatedCard.likes);
+            card.toggleLike();
+        })
+        .catch((err) => {
+            console.error(
+                `An error occurred while trying to update the like status: ${err}`
+            );
+        });
 }
 
 const section = new Section(
@@ -139,7 +135,6 @@ const section = new Section(
         items: initialCards,
         renderer: renderCard,
     },
-
     ".cards__list"
 );
 
@@ -219,8 +214,17 @@ const api = new Api({
 });
 
 api.getInitialCards()
-    .then((result) => {
-        section.renderItems(result);
+    .then((cardsData) => {
+        cardsData.forEach((cardData) => {
+            if (Array.isArray(cardData.likes)) {
+                cardData.isLiked = cardData.likes.some(
+                    (like) => like._id === userId
+                );
+            } else {
+                cardData.isLiked = false;
+            }
+            section.addItem(createCard(cardData));
+        });
     })
     .catch((err) => {
         console.error(err);

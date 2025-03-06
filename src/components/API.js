@@ -75,28 +75,11 @@ export default class Api {
         return Promise.all([this.getUserInfo(), this.getInitialCards()]);
     }
 
-    addLike(cardId) {
+    changeCardLikeStatus(cardId, isLiked) {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: "PUT",
+            method: isLiked ? "DELETE" : "PUT",
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        });
-    }
-
-    deleteLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: "DELETE",
-            headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        });
+        }).then((res) => this._handleServerResponse(res));
     }
 
     setAvatar(link) {
@@ -112,5 +95,12 @@ export default class Api {
             }
             return Promise.reject(`Error: ${res.status}`);
         });
+    }
+
+    _handleServerResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
     }
 }
