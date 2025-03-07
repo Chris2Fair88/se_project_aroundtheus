@@ -70,12 +70,11 @@ export default class Card {
     }
 
     isLiked() {
-        return this._likeButton.classList.contains("card__like-button_active");
+        return this._isLiked;
     }
 
-    setLikes(likes) {
-        this._likes = likes;
-        this._isLiked = likes.some((like) => like._id === this._userId);
+    setLikes(isLiked) {
+        this._isLiked = isLiked;
         this._updateLikes();
     }
 

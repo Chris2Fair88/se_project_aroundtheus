@@ -120,8 +120,7 @@ function handleLikeClick(card) {
     const isLiked = card.isLiked();
     api.changeCardLikeStatus(card._cardId, isLiked)
         .then((updatedCard) => {
-            card.setLikes(updatedCard.likes);
-            card.toggleLike();
+            card.setLikes(updatedCard.isLiked);
         })
         .catch((err) => {
             console.error(
