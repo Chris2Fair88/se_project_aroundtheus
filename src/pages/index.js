@@ -118,7 +118,7 @@ function cardInfoSubmit(cardId) {
 
 function handleLikeClick(card) {
     const isLiked = card.isLiked();
-    api.changeCardLikeStatus(card.getId(), isLiked)
+    api.changeCardLikeStatus(card._cardId, isLiked)
         .then((updatedCard) => {
             card.setLikes(updatedCard.likes);
             card.toggleLike();
