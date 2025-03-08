@@ -69,16 +69,6 @@ function handleDeleteCard(card) {
     });
 }
 
-function getCardElement(cardData) {
-    const card = new Card(
-        cardData,
-        "#card-template",
-        handleImageClick,
-        handleDeleteCard
-    );
-    return card.getView();
-}
-
 imagePopup.setEventListeners();
 
 function createCard(cardData) {
@@ -96,25 +86,6 @@ function createCard(cardData) {
         handleLikeClick
     );
     return card.getView();
-}
-
-function cardInfoSubmit(cardId) {
-    deleteCardPopup.setSubmitFunc(() => {
-        api.deleteCard(cardId)
-            .then(() => {
-                card.deleteCard();
-                deleteCardPopup.close();
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Error: ${res.status}`);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    });
 }
 
 function handleLikeClick(card) {
@@ -182,6 +153,9 @@ const editProfileModal = new PopupWithForm(
                 });
                 profileEditForm.reset();
                 editProfileModal.close();
+            })
+            .catch((err) => {
+                console.error(err);
             })
             .finally(() => {
                 editProfileModal.setLoading(false);
