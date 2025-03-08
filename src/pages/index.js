@@ -32,6 +32,7 @@ import {
     imageModalText,
     imageModalCloseButton,
     avatarEditButton,
+    avatarEditForm,
 } from "../utils/constants.js";
 
 const userInfo = new UserInfo(
@@ -204,6 +205,9 @@ addCardFormValidator.enableValidation();
 const editProfileFormValidator = new FormValidator(settings, profileEditForm);
 editProfileFormValidator.enableValidation();
 
+const avatarEditFormValidator = new FormValidator(settings, avatarEditForm);
+avatarEditFormValidator.enableValidation();
+
 const api = new Api({
     baseUrl: "https://around-api.en.tripleten-services.com/v1",
     headers: {
@@ -214,16 +218,7 @@ const api = new Api({
 
 api.getInitialCards()
     .then((cardsData) => {
-        cardsData.forEach((cardData) => {
-            if (Array.isArray(cardData.likes)) {
-                cardData.isLiked = cardData.likes.some(
-                    (like) => like._id === userId
-                );
-            } else {
-                cardData.isLiked = false;
-            }
-            section.addItem(createCard(cardData));
-        });
+        section.renderItems(cardsData);
     })
     .catch((err) => {
         console.error(err);
