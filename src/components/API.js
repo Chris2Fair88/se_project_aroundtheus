@@ -7,9 +7,7 @@ export default class Api {
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
-        })
-            .then(this._handleServerResponse)
-            .catch((err) => console.log(err));
+        }).then(this._handleServerResponse);
     }
 
     createNewCard(data) {
@@ -20,27 +18,21 @@ export default class Api {
                 name: data.name,
                 link: data.link,
             }),
-        })
-            .then(this._handleServerResponse)
-            .catch((err) => console.log(err));
+        }).then(this._handleServerResponse);
     }
 
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: "DELETE",
             headers: this._headers,
-        })
-            .then(this._handleServerResponse)
-            .catch((err) => console.log(err));
+        }).then(this._handleServerResponse);
     }
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
             headers: this._headers,
-        })
-            .then(this._handleServerResponse)
-            .catch((err) => console.log(err));
+        }).then(this._handleServerResponse);
     }
 
     setProfileInfo({ name, about }) {
@@ -51,9 +43,7 @@ export default class Api {
                 name: name,
                 about: about,
             }),
-        })
-            .then(this._handleServerResponse)
-            .catch((err) => console.log(err));
+        }).then(this._handleServerResponse);
     }
 
     getAppInfo() {
@@ -64,9 +54,7 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: isLiked ? "DELETE" : "PUT",
             headers: this._headers,
-        })
-            .then((res) => this._handleServerResponse(res))
-            .catch((err) => console.log(err));
+        }).then((res) => this._handleServerResponse(res));
     }
 
     setAvatar(link) {
@@ -76,9 +64,7 @@ export default class Api {
             body: JSON.stringify({
                 avatar: link,
             }),
-        })
-            .then(this._handleServerResponse)
-            .catch((err) => console.log(err));
+        }).then(this._handleServerResponse);
     }
 
     _handleServerResponse(res) {
