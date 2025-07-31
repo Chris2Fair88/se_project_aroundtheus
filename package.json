@@ -35,7 +35,8 @@
     },
     "dependencies": {
         "core-js": "3.23.5",
-        "D": "^1.0.0"
+        "D": "^1.0.0",
+        "mongoose": "^8.14.2"
     },
     "bugs": {
         "url": "https://github.com/Chris2Fair88/se_project_aroundtheus/issues"

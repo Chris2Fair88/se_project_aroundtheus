@@ -54,7 +54,7 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: isLiked ? "DELETE" : "PUT",
             headers: this._headers,
-        }).then((res) => this._handleServerResponse(res));
+        }).then(this._handleServerResponse);
     }
 
     setAvatar(link) {

@@ -6,7 +6,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js";
-import Api from "../components/Api.js";
+import API from "../components/API.js";
 import {
     settings,
     initialCards,
@@ -35,7 +35,9 @@ import {
     avatarEditForm,
 } from "../utils/constants.js";
 
-const userInfo = new UserInfo(
+let userId;
+
+const userInfoInstance = new UserInfo(
     ".profile__title",
     ".profile__description",
     ".profile__image"
@@ -43,7 +45,7 @@ const userInfo = new UserInfo(
 const imagePopup = new PopupWithImage("#card-image-modal");
 
 profileEditButton.addEventListener("click", () => {
-    const userData = userInfo.getUserInfo();
+    const userData = userInfoInstance.getUserInfo();
     profileTitleInput.value = userData.name;
     profileDescriptionInput.value = userData.job;
 });
@@ -83,16 +85,25 @@ function createCard(cardData) {
         "#card-template",
         handleImageClick,
         handleDeleteCard,
-        handleLikeClick
+        handleLikeClick,
+        userId
     );
     return card.getView();
 }
 
 function handleLikeClick(card) {
     const isLiked = card.isLiked();
-    api.changeCardLikeStatus(card._cardId, isLiked)
+    api.changeCardLikeStatus(card.getId(), isLiked)
         .then((updatedCard) => {
-            card.setLikes(updatedCard.isLiked);
+            if (updatedCard) {
+                if (updatedCard.likes) {
+                    card.setLikes(updatedCard.likes);
+                } else {
+                    card.toggleLike();
+                }
+            } else {
+                console.error("Invalid response from API:", updatedCard);
+            }
         })
         .catch((err) => {
             console.error(
@@ -147,7 +158,7 @@ const editProfileModal = new PopupWithForm(
             about: formData.description,
         })
             .then((result) => {
-                userInfo.setUserInfo({
+                userInfoInstance.setUserInfo({
                     name: result.name,
                     description: result.about,
                 });
@@ -182,7 +193,7 @@ editProfileFormValidator.enableValidation();
 const avatarEditFormValidator = new FormValidator(settings, avatarEditForm);
 avatarEditFormValidator.enableValidation();
 
-const api = new Api({
+const api = new API({
     baseUrl: "https://around-api.en.tripleten-services.com/v1",
     headers: {
         authorization: "34309ff6-916f-42f6-9f50-594fbb533e2c",
@@ -190,21 +201,26 @@ const api = new Api({
     },
 });
 
-api.getInitialCards()
-    .then((cardsData) => {
-        section.renderItems(cardsData);
-    })
-    .catch((err) => {
-        console.error(err);
-    });
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userData, cardsData]) => {
+        userId = userData._id;
 
-api.getUserInfo()
-    .then((result) => {
-        userInfo.setUserInfo({
-            name: result.name,
-            description: result.about,
+        userInfoInstance.setUserInfo({
+            name: userData.name,
+            description: userData.about,
         });
-        userInfo.setAvatar(result.avatar);
+        userInfoInstance.setAvatar(userData.avatar);
+
+        cardsData.forEach((cardData) => {
+            if (Array.isArray(cardData.likes)) {
+                cardData.isLiked = cardData.likes.some(
+                    (like) => like._id === userId
+                );
+            } else {
+                cardData.isLiked = false;
+            }
+            section.addItem(createCard(cardData));
+        });
     })
     .catch((err) => {
         console.error(err);
@@ -214,11 +230,11 @@ const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
     avatarEditModal.setLoading(true);
     api.setAvatar(formData.avatar)
         .then((result) => {
-            userInfo.setAvatar(result.avatar);
+            userInfoInstance.setAvatar(result.avatar);
             avatarEditModal.close();
         })
         .catch((err) => {
-            console.error(err);
+            console.error("Avatar update error:", err);
         })
         .finally(() => {
             avatarEditModal.setLoading(false);

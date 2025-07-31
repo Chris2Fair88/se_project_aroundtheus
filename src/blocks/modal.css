@@ -47,7 +47,6 @@
 
 .modal__input {
     border: none;
-    border-sizing: border-box;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-family: Inter, Arial, sans-serif;
     font-size: 14px;

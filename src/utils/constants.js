@@ -1,31 +1,3 @@
-export {
-    settings,
-    initialCards,
-    profileEditButton,
-    profileEditModal,
-    profileModalCloseButton,
-    profileTitle,
-    profileDescription,
-    profileTitleInput,
-    profileDescriptionInput,
-    profileEditForm,
-    addCardButton,
-    addCardModal,
-    addImageCloseButton,
-    addCardTitle,
-    addCardURL,
-    addCardTitleInput,
-    addCardURLInput,
-    cardListEl,
-    addCardForm,
-    imageModal,
-    imageModalImg,
-    imageModalText,
-    imageModalCloseButton,
-    avatarEditButton,
-    avatarEditForm,
-};
-
 const initialCards = [
     {
         name: "Yosemite Valley",
@@ -62,9 +34,9 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
     "#profile-description-input"
 );
-const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileEditForm = document.querySelector("#profile-edit-form");
 const avatarEditButton = document.querySelector(".profile__image-edit");
-const avatarEditForm = document.querySelector("#avatar-edit-modal");
+const avatarEditForm = document.querySelector("#avatar-edit-form");
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
@@ -74,7 +46,7 @@ const addCardURL = document.querySelector(".modal__input_type_url");
 const addCardTitleInput = document.querySelector("#image-title-input");
 const addCardURLInput = document.querySelector("#image-description-input");
 const cardListEl = document.querySelector(".cards__list");
-const addCardForm = addCardModal.querySelector(".modal__form");
+const addCardForm = document.querySelector("#add-card-form");
 
 const imageModal = document.querySelector("#card-image-modal");
 const imageModalImg = document.querySelector(".modal__image");
@@ -89,4 +61,32 @@ const settings = {
     inactiveButtonClass: "modal__button_disabled",
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible",
+};
+
+export {
+    settings,
+    initialCards,
+    profileEditButton,
+    profileEditModal,
+    profileModalCloseButton,
+    profileTitle,
+    profileDescription,
+    profileTitleInput,
+    profileDescriptionInput,
+    profileEditForm,
+    addCardButton,
+    addCardModal,
+    addImageCloseButton,
+    addCardTitle,
+    addCardURL,
+    addCardTitleInput,
+    addCardURLInput,
+    cardListEl,
+    addCardForm,
+    imageModal,
+    imageModalImg,
+    imageModalText,
+    imageModalCloseButton,
+    avatarEditButton,
+    avatarEditForm,
 };

@@ -4,7 +4,8 @@ export default class Card {
         cardSelector,
         handleImageClick,
         handleDeleteCard,
-        handleLikeClick
+        handleLikeClick,
+        userId
     ) {
         this._name = name;
         this._link = link;
@@ -16,6 +17,7 @@ export default class Card {
         this._likeButton = null;
         this._isLiked = isLiked;
         this._likes = likes;
+        this._userId = userId;
     }
 
     _updateLikes() {
@@ -73,8 +75,9 @@ export default class Card {
         return this._isLiked;
     }
 
-    setLikes(isLiked) {
-        this._isLiked = isLiked;
+    setLikes(likes) {
+        this._likes = likes;
+        this._isLiked = this._likes.some((like) => like._id === this._userId);
         this._updateLikes();
     }
 
