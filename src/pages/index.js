@@ -211,6 +211,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         });
         userInfoInstance.setAvatar(userData.avatar);
 
+        document.querySelector(".profile").classList.add("profile_loaded");
+
         cardsData.forEach((cardData) => {
             if (Array.isArray(cardData.likes)) {
                 cardData.isLiked = cardData.likes.some(
@@ -224,6 +226,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     })
     .catch((err) => {
         console.error(err);
+        document.querySelector(".profile").classList.add("profile_loaded");
     });
 
 const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
@@ -242,6 +245,21 @@ const avatarEditModal = new PopupWithForm("#avatar-edit-modal", (formData) => {
 });
 
 avatarEditModal.setEventListeners();
-avatarEditButton.addEventListener("click", () => {
-    avatarEditModal.open();
-});
+
+if (profileEditButton) {
+    profileEditButton.addEventListener("click", () => {
+        editProfileModal.open();
+    });
+}
+
+if (addCardButton) {
+    addCardButton.addEventListener("click", () => {
+        addCardPopup.open();
+    });
+}
+
+if (avatarEditButton) {
+    avatarEditButton.addEventListener("click", () => {
+        avatarEditModal.open();
+    });
+}

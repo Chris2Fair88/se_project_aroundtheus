@@ -5,6 +5,12 @@
     padding-top: 40px;
     max-width: 880px;
     width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.profile_loaded {
+    opacity: 1;
 }
 
 .profile__container {
